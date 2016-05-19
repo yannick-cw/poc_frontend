@@ -1,0 +1,18 @@
+@import play.api.Play.current
+@import play.api.i18n.Messages.Implicits._
+@(inputForm: Form[UserInput], algorithms: Map[String, String])
+
+@main("Welcome to Play") {
+
+    @helper.form(action = controllers.routes.MainController.userPost(), args = 'method -> "POST") {
+        @helper.inputText(inputForm("inputText"), '_label -> "Input Text")
+        @helper.inputCheckboxGroup(inputForm("inputAlgorithms"),
+            options = algorithms.toList,
+            '_label -> "Algorithms",
+            '_error -> inputForm("inputAlgorithms").error.map(_.withMessage("please select at least one algorithm"))
+        )
+
+        <br />
+        <input type="submit" value="Run POC" />
+    }
+}
