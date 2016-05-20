@@ -11,7 +11,7 @@ import play.api.data.Forms._
 import play.api.mvc._
 import akka.http.scaladsl._
 
-case class UserInput(inputText: String, inputAlgorithms: List[String])
+case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
 
 @Singleton
 class MainController @Inject() extends Controller {
@@ -26,14 +26,22 @@ class MainController @Inject() extends Controller {
                 maxLength = Config.Form.ValidationValues.INPUT_TEXT_MAXIMUM_LENGTH
             ),
             "inputAlgorithms" -> list(nonEmptyText)
-        )(UserInput.apply)(UserInput.unapply)
+        )(EvaluationRequest.apply)(EvaluationRequest.unapply) verifying (Config.Form.Error.FORM_INPUT_ERROR, fields => validatorModel.getCleanedRequest(fields) match {
+            case validRequestData@Some(evaluationRequest) => {
+                implicit val validRequest = validRequestData
+                println(validRequest.toString)
+                true
+            }
+
+            case _ => false
+        })
     )
 
 
     def index = Action {
         Ok(views.html.index(userInputForm, validatorModel.getValidAlgorithms.map(algorithm => {
             algorithm._1 -> algorithm._2.name
-            }))
+        }))
         )
     }
 
@@ -47,15 +55,15 @@ class MainController @Inject() extends Controller {
     }
 
 
-    def userPost = Action { implicit request =>
+    def handleUserInput = Action { implicit request =>
         userInputForm.bindFromRequest.fold(
             formWithErrors => {
                 //400
                 BadRequest
             },
+
             userData => {
-                //200
-                Ok(userData.toString())
+                Ok
             }
         )
     }

@@ -17,8 +17,7 @@ object Config {
 
         object Error {
 
-            val FORM_INPUT_TEXT_ERROR = "Please enter a valid input text"
-            val SELECTED_ALGORITHMS_ERROR = "Please select at least one algorithm"
+            val FORM_INPUT_ERROR = "Please enter a valid input text and chose an algorithm"
             val ERROR_DURING_REQUEST = "Error while requesting your classification"
         }
 

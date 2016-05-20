@@ -11,10 +11,8 @@ GET     /                               controllers.MainController.index
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.versioned(path="/public", file: Asset)
 
-#input text request
-GET     /poc/:inputText/*algorithms     controllers.MainController.handleInputRequest(inputText, algorithms: String)
-
 
 ############ POST ############
 
-POST /userPost                          controllers.MainController.userPost()
+#user input from formular
+POST /userPosts                         controllers.MainController.handleUserInput()
