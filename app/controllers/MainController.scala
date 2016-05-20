@@ -70,7 +70,7 @@ class MainController @Inject() extends Controller {
 
             userData => {
                 sendRequestToServer
-                Ok
+                Ok(s"request sent with ${this.validRequest}")
             }
         )
     }
@@ -87,7 +87,7 @@ class MainController @Inject() extends Controller {
 
     def sendRequestToServer(implicit validRequest:EvaluationRequest) :Future[HttpResponse] = {
         //TODO generate JSON ,  extract to model
-        Http().singleRequest(HttpRequest(POST, uri = "", entity = validRequest.toString))
+        Http().singleRequest(HttpRequest(POST, uri = "/", entity = validRequest.toString))
     }
 
 }
