@@ -10,14 +10,22 @@ import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc._
 import akka.http.scaladsl._
+import akka.http.scaladsl.model.HttpRequest
+
+import scala.concurrent.Future
 
 case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
+case class EvaluationResponse(evaluation: Map[String, Double])
 
 @Singleton
 class MainController @Inject() extends Controller {
     val validatorModel = ValidatorModel
     val requestModel = new ConnectorModel
 
+    /* Narf...FIX ME
+    * request validated and converted to a valid request on verifying method of userInputForm (l. 33) =>
+    * store valid request in verifying method for later usages */
+    implicit var validRequest: EvaluationRequest = null
 
     val userInputForm = Form(
         mapping(
@@ -25,11 +33,12 @@ class MainController @Inject() extends Controller {
                 minLength = Config.Form.ValidationValues.INPUT_TEXT_MINIMUM_LENGTH,
                 maxLength = Config.Form.ValidationValues.INPUT_TEXT_MAXIMUM_LENGTH
             ),
+
             "inputAlgorithms" -> list(nonEmptyText)
-        )(EvaluationRequest.apply)(EvaluationRequest.unapply) verifying (Config.Form.Error.FORM_INPUT_ERROR, fields => validatorModel.getCleanedRequest(fields) match {
+
+        )(EvaluationRequest.apply)(EvaluationRequest.unapply) verifying (Config.Form.Error.FORM_INPUT_ERROR, fields =>  validatorModel.getCleanedRequest(fields) match {
             case validRequestData@Some(evaluationRequest) => {
-                implicit val validRequest = validRequestData
-                println(validRequest.toString)
+                validRequest = evaluationRequest
                 true
             }
 
@@ -46,9 +55,6 @@ class MainController @Inject() extends Controller {
     }
 
 
-    def simpleResonse = Ok("simple responde worked")
-
-
     def handleInputRequest(inputText: String, requestedAlgorithms: String) = Action {
         //TODO send request to microservice
         Ok("")
@@ -63,22 +69,25 @@ class MainController @Inject() extends Controller {
             },
 
             userData => {
+                sendRequestToServer
                 Ok
             }
         )
     }
-
 
     import akka.http.scaladsl.Http
     import akka.http.scaladsl.model._
     import akka.stream.ActorMaterializer
 
     import scala.concurrent.Future
+    import HttpMethods._
 
     implicit val system = ActorSystem()
     implicit val materializer = ActorMaterializer()
 
-    val responseFuture: Future[HttpResponse] =
-        Http().singleRequest(HttpRequest(uri = "http://akka.io"))
+    def sendRequestToServer(implicit validRequest:EvaluationRequest) :Future[HttpResponse] = {
+        //TODO generate JSON ,  extract to model
+        Http().singleRequest(HttpRequest(POST, uri = "", entity = validRequest.toString))
+    }
 
 }
