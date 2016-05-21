@@ -4,15 +4,12 @@ import javax.inject._
 
 import akka.actor.ActorSystem
 import app.Config
-import models.ConnectorModel
-import models.ValidatorModel
+import models.{HttpRequestModel, ValidatorModel}
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.mvc._
-import akka.http.scaladsl._
-import akka.http.scaladsl.model.HttpRequest
 
-import scala.concurrent.Future
+import scala.concurrent.{ExecutionContext, Future}
 
 case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
 case class EvaluationResponse(evaluation: Map[String, Double])
@@ -20,7 +17,7 @@ case class EvaluationResponse(evaluation: Map[String, Double])
 @Singleton
 class MainController @Inject() extends Controller {
     val validatorModel = ValidatorModel
-    val requestModel = new ConnectorModel
+    val requestModel = new HttpRequestModel
 
     /* Narf...FIX ME
     * request validated and converted to a valid request on verifying method of userInputForm (l. 33) =>
@@ -69,25 +66,32 @@ class MainController @Inject() extends Controller {
             },
 
             userData => {
-                sendRequestToServer
+                HttpRequestModel.apply
                 Ok(s"request sent with ${this.validRequest}")
             }
         )
     }
 
-    import akka.http.scaladsl.Http
-    import akka.http.scaladsl.model._
-    import akka.stream.ActorMaterializer
+    import ExecutionContext.Implicits.global
 
-    import scala.concurrent.Future
-    import HttpMethods._
+    def futureTest = Action {
+        lazy val futureList:List[Future[String]] = List(generateFuture(true), generateFuture(false))
 
-    implicit val system = ActorSystem()
-    implicit val materializer = ActorMaterializer()
+        lazy val future1 = generateFuture(true)
+        lazy val future2 = generateFuture(false)
+        lazy val future3 = generateFuture(true)
 
-    def sendRequestToServer(implicit validRequest:EvaluationRequest) :Future[HttpResponse] = {
-        //TODO generate JSON ,  extract to model
-        Http().singleRequest(HttpRequest(POST, uri = "/", entity = validRequest.toString))
+        Future.sequence(Seq(future1,future2)).map{
+            case results => println(results)
+        }
+        Ok
+    }
+
+
+    def generateFuture(sleep: Boolean) : Future[String] = Future {
+        Thread.sleep(5000)
+        println(s"Thread with sleep value $sleep is ready")
+        s"return from sleep value was $sleep"
     }
 
 }

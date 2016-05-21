@@ -2,15 +2,18 @@ package models
 
 import app.Config
 import controllers.EvaluationRequest
+import akka.http.scaladsl.model._
+
 
 object ValidatorModel {
 
     case class InputData(inputText: String, usedAlgorithms: List[LearningAlgorithm])
 
-    abstract class LearningAlgorithm(val name: String)
+    abstract class LearningAlgorithm(val name: String, val ip: Uri)
 
     object LearningAlgorithmTypes {
-        case object NaiveBayes extends LearningAlgorithm("Naive Bayes")
+        //TODO request ip's from algorithm-services
+        case object NaiveBayes extends LearningAlgorithm("Naive Bayes", "localhost")
     }
 
 
