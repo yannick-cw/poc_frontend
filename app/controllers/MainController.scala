@@ -17,7 +17,6 @@ case class EvaluationResponse(evaluation: Map[String, Double])
 @Singleton
 class MainController @Inject() extends Controller {
     val validatorModel = ValidatorModel
-    val requestModel = new HttpRequestModel
 
     /* Narf...FIX ME
     * request validated and converted to a valid request on verifying method of userInputForm (l. 33) =>
@@ -66,7 +65,6 @@ class MainController @Inject() extends Controller {
             },
 
             userData => {
-                HttpRequestModel.apply
                 Ok(s"request sent with ${this.validRequest}")
             }
         )
