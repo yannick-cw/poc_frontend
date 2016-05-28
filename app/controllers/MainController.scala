@@ -47,13 +47,17 @@ class MainController @Inject() extends Controller {
     )
 
 
-    def index = Action {
-        Ok(views.html.index(userInputForm, validatorModel.getValidAlgorithms.map(algorithm => {
-            algorithm._1 -> algorithm._2.name
-        }))
+    def index() = Action {
+        Ok(views.html.index(
+            Config.Defaults.APPLICATION_TITLE,
+            Config.Defaults.APPLICATION_SUBTITLE,
+            controllers.routes.MainController.index.toString,
+            userInputForm,
+            validatorModel.getValidAlgorithms.map(algorithm => {
+                algorithm._1 -> algorithm._2.name
+            }))
         )
     }
-
 
     def handleInputRequest(inputText: String, requestedAlgorithms: String) = Action {
         //TODO send request to microservice
@@ -76,8 +80,7 @@ class MainController @Inject() extends Controller {
 
                 val result = Await.result(response, 10 seconds)
 
-                Ok(result.toString)
-
+                Ok(result.toString())
             }
         )
     }

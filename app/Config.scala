@@ -3,7 +3,9 @@ package app
 object Config {
 
     object Defaults  {
-        val APPLICATION_TITLE = "POC - Political Opinion Classifier"
+        val APPLICATION_TITLE = "POC"
+
+        val APPLICATION_SUBTITLE = "Political Opinion Classifier"
     }
 
     object Form  {
