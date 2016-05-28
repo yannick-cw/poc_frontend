@@ -20,8 +20,7 @@ class HttpRequestModel(serviceRequest: EvaluationRequest) extends JsonSupport {
 
     //create future for each algorithm request
 
-    def request = {
-
+    def request : Future[List[String]] = {
         val futures = for (request <- ValidatorModel.getAlgorithmsByName(serviceRequest.inputAlgorithms)) yield {
             Source
               .single(HttpRequest(POST, entity = serviceRequest.inputText))
@@ -31,14 +30,11 @@ class HttpRequestModel(serviceRequest: EvaluationRequest) extends JsonSupport {
 
         val result = Future sequence (futures.toList)
 
-        //TODO howto handle result from future sequence?
         result.map { responseList => {
+            println("generating results")
             responseList.map { response => {
-                println(response.toString())
                 response.entity.asInstanceOf[HttpEntity.Strict].data.decodeString("UTF-8")
-            }
-            }
-        }
-        }
+            }}
+        }}
     }
 }

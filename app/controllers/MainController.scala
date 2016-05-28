@@ -3,17 +3,19 @@ package controllers
 import javax.inject._
 
 import akka.actor.ActorSystem
+import akka.actor.Status.{Failure, Success}
 import app.Config
 import models.{HttpRequestModel, ValidatorModel}
 import play.api.data.Form
 import play.api.data.Forms._
 import play.api.libs.ws.WS
 import play.api.mvc._
-import scala.concurrent.duration._
 
+import scala.concurrent.duration._
 import scala.concurrent.{Await, ExecutionContext, Future}
 
 case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
+
 case class EvaluationResponse(evaluation: Map[String, Double])
 
 @Singleton
@@ -34,7 +36,7 @@ class MainController @Inject() extends Controller {
 
             "inputAlgorithms" -> list(nonEmptyText)
 
-        )(EvaluationRequest.apply)(EvaluationRequest.unapply) verifying (Config.Form.Error.FORM_INPUT_ERROR, fields =>  validatorModel.getCleanedRequest(fields) match {
+        )(EvaluationRequest.apply)(EvaluationRequest.unapply) verifying(Config.Form.Error.FORM_INPUT_ERROR, fields => validatorModel.getCleanedRequest(fields) match {
             case validRequestData@Some(evaluationRequest) => {
                 validRequest = evaluationRequest
                 true
@@ -58,7 +60,7 @@ class MainController @Inject() extends Controller {
         Ok("")
     }
 
-    def handleUserInput = Action { implicit request =>
+    def handleUserInput = Action { implicit request => {
         userInputForm.bindFromRequest.fold(
             formWithErrors => {
                 //400
@@ -66,40 +68,18 @@ class MainController @Inject() extends Controller {
             },
 
             userData => {
-                val httpRequestModel = new HttpRequestModel(validRequest)
                 import ExecutionContext.Implicits.global
-                val response = Future {
-                    httpRequestModel.request
-                }
 
-                //TODO wait for result, not working yet
-                val result = Await.result(response, 15 seconds)
+                val httpRequestModel = new HttpRequestModel(validRequest)
+                println("start future")
+                val response = httpRequestModel.request
 
-                Ok(s"request response with: ${result}")
+                val result = Await.result(response, 10 seconds)
+
+                Ok(result.toString)
+
             }
         )
     }
-
-    import ExecutionContext.Implicits.global
-
-    def futureTest = Action {
-        lazy val futureList:List[Future[String]] = List(generateFuture(true), generateFuture(false))
-
-        lazy val future1 = generateFuture(true)
-        lazy val future2 = generateFuture(false)
-        lazy val future3 = generateFuture(true)
-
-        Future.sequence(Seq(future1,future2)).map{
-            case results => println(results)
-        }
-        Ok
     }
-
-
-    def generateFuture(sleep: Boolean) : Future[String] = Future {
-        Thread.sleep(5000)
-        println(s"Thread with sleep value $sleep is ready")
-        s"return from sleep value was $sleep"
-    }
-
 }
