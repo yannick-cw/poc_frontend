@@ -34,8 +34,11 @@ object ValidatorModel {
         LearningAlgorithms.validAgorithms
     }
 
+    def getAlgorithmsByName(algorithmNames: List[String]) : Map[String, LearningAlgorithm] = {
+       getValidAlgorithms.filter(algorithmNames contains _._1)
+    }
 
-    def getValidAlgorithmsFromRequest(requestUriPart: List[String]) : List[String] = {
+    def getValidAlgorithNamesFromRequest(requestUriPart: List[String]) : List[String] = {
         requestUriPart.filter(LearningAlgorithms(_).isDefined).toList
     }
 
@@ -47,7 +50,7 @@ object ValidatorModel {
 
     def getCleanedRequest(evaluationRequest: EvaluationRequest) : Option[EvaluationRequest] = {
         val cleanInputText = evaluationRequest.inputText.trim
-        val validAlgorithms = getValidAlgorithmsFromRequest(evaluationRequest.inputAlgorithms)
+        val validAlgorithms = getValidAlgorithNamesFromRequest(evaluationRequest.inputAlgorithms)
 
         (isValidInput(cleanInputText) && validAlgorithms.nonEmpty) match {
             case true => Some(EvaluationRequest(cleanInputText, validAlgorithms))

@@ -1,8 +1,9 @@
-import app.Config
+package protocols
 
-/**
-  * Created by Simon on 20.05.2016.
-  */
-object Protocols {
+import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
+import controllers.EvaluationRequest
+import spray.json._
 
+trait JsonSupport extends SprayJsonSupport with DefaultJsonProtocol {
+    implicit val itemFormat = jsonFormat2(EvaluationRequest)
 }
