@@ -7,9 +7,11 @@ import app.Config
 import models.{HttpRequestModel, ValidatorModel}
 import play.api.data.Form
 import play.api.data.Forms._
+import play.api.libs.ws.WS
 import play.api.mvc._
+import scala.concurrent.duration._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.{Await, ExecutionContext, Future}
 
 case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
 case class EvaluationResponse(evaluation: Map[String, Double])
@@ -56,7 +58,6 @@ class MainController @Inject() extends Controller {
         Ok("")
     }
 
-
     def handleUserInput = Action { implicit request =>
         userInputForm.bindFromRequest.fold(
             formWithErrors => {
@@ -66,7 +67,15 @@ class MainController @Inject() extends Controller {
 
             userData => {
                 val httpRequestModel = new HttpRequestModel(validRequest)
-                Ok(s"request response with: ${httpRequestModel.request}")
+                import ExecutionContext.Implicits.global
+                val response = Future {
+                    httpRequestModel.request
+                }
+
+                //TODO wait for result, not working yet
+                val result = Await.result(response, 15 seconds)
+
+                Ok(s"request response with: ${result}")
             }
         )
     }
