@@ -1,8 +1,10 @@
 @import play.api.Play.current
 @import play.api.i18n.Messages.Implicits._
-@( title: String, subtitle: String, routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String])
+@import app.Config
 
-@main(title, subtitle, routePath) {
+@(routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String], responseData: String = "")(implicit defaultValues: Config.Defaults.type)
+
+@main(routePath) {
 
     @helper.form(action = controllers.routes.MainController.handleUserInput(), args = 'method -> "POST") {
         @helper.inputText(inputForm("inputText"), '_label -> "Input Text")
@@ -14,5 +16,11 @@
 
         <br />
         <input type="submit" value="Run POC" />
+
+        @if(responseData != "") {
+            <section class="result">
+                @responseData
+            </section>
+        }
     }
 }

@@ -1,26 +1,35 @@
-@(title: String, subtitle: String, routePath: String)(content: Html)
+@import app.Config
+
+@(routePath: String)(content: Html)(implicit defaultValues: Config.Defaults.type)
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>@title</title>
-    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
-    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
-    <script src="@routes.Assets.versioned(" javascripts/hello.js")" type="text/javascript"></script>
+    <head>
+        <title>@defaultValues.APPLICATION_TITLE</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
+        <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+        <script src="@routes.Assets.versioned(" javascripts/hello.js")" type="text/javascript"></script>
     </head>
+
     <body>
         <section>
             <header>
                 <nav>
                     <ul>
-                        <li @{if(routePath == controllers.routes.MainController.index.toString()) "class=active"}><a href="@routes.MainController.index()">Startpage</a></li>
-                        <li>Documentation</li>
-                        <li>About</li>
+                        <li @{if(routePath == controllers.routes.MainController.index.toString()) "class=active"}>
+                            <a href="@routes.MainController.index()">Startpage</a>
+                        </li>
+                        <li @{if(routePath == controllers.routes.MainController.showDocumentation.toString()) "class=active"}>
+                            <a href="@routes.MainController.showDocumentation()">Documentation</a>
+                        </li>
+                        <li @{if(routePath == controllers.routes.MainController.showAbout.toString()) "class=active"}>
+                            <a href="@routes.MainController.showAbout()">About</a>
+                        </li>
                     </ul>
                 </nav>
 
-                <h1>@title</h1>
-                <h2>@subtitle</h2>
+                <h1>@defaultValues.APPLICATION_TITLE</h1>
+                <h2>@defaultValues.APPLICATION_SUBTITLE</h2>
             </header>
         </section>
 

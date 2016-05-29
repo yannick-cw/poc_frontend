@@ -8,6 +8,10 @@
 #default routing to homepage
 GET     /                               controllers.MainController.index()
 
+#not the best way to do this, but no need for dynamic page routing
+GET     /documentation                  controllers.MainController.showDocumentation
+GET     /about                          controllers.MainController.showAbout
+
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file                   controllers.Assets.versioned(path="/public", file: Asset)
 
@@ -15,4 +19,4 @@ GET     /assets/*file                   controllers.Assets.versioned(path="/publ
 ############ POST ############
 
 #user input from formular
-POST /userPosts                         controllers.MainController.handleUserInput()
+POST /                         controllers.MainController.handleUserInput()

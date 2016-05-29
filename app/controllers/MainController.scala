@@ -20,6 +20,7 @@ case class EvaluationResponse(evaluation: Map[String, Double])
 
 @Singleton
 class MainController @Inject() extends Controller {
+    implicit val defaultValues = Config.Defaults
     lazy val validatorModel = ValidatorModel
 
     /* Narf...FIX ME
@@ -47,28 +48,31 @@ class MainController @Inject() extends Controller {
     )
 
 
-    def index() = Action {
-        Ok(views.html.index(
-            Config.Defaults.APPLICATION_TITLE,
-            Config.Defaults.APPLICATION_SUBTITLE,
-            controllers.routes.MainController.index.toString,
-            userInputForm,
-            validatorModel.getValidAlgorithms.map(algorithm => {
-                algorithm._1 -> algorithm._2.name
-            }))
-        )
+    private val algorithmsForTemplate: Map[String, String] = {
+        validatorModel.getValidAlgorithms.map(algorithm => {
+            algorithm._1 -> algorithm._2.name
+        })
     }
 
-    def handleInputRequest(inputText: String, requestedAlgorithms: String) = Action {
-        //TODO send request to microservice
-        Ok("")
+
+    def index() = Action {
+        Ok(views.html.index(
+            controllers.routes.MainController.index.toString,
+            userInputForm,
+            algorithmsForTemplate
+        ))
     }
+
 
     def handleUserInput = Action { implicit request => {
         userInputForm.bindFromRequest.fold(
             formWithErrors => {
                 //400
-                BadRequest
+                BadRequest(views.html.index(
+                    controllers.routes.MainController.index.toString,
+                    formWithErrors,
+                    algorithmsForTemplate
+                ))
             },
 
             userData => {
@@ -80,9 +84,27 @@ class MainController @Inject() extends Controller {
 
                 val result = Await.result(response, 10 seconds)
 
-                Ok(result.toString())
+                Ok(views.html.index(
+                    controllers.routes.MainController.index.toString,
+                    userInputForm,
+                    algorithmsForTemplate,
+                    result.toString()
+                ))
             }
         )
+    }}
+
+
+    def showDocumentation = Action {
+        Ok(views.html.documentation(
+            controllers.routes.MainController.showDocumentation.toString
+        ))
     }
+
+
+    def showAbout = Action {
+        Ok(views.html.about(
+            controllers.routes.MainController.showAbout.toString
+        ))
     }
 }
