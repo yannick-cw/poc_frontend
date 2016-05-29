@@ -6,12 +6,16 @@
 
 @main(routePath) {
 
+    <div class="text-block">
+        <p>Some bla bla bla about this project and how it works...why it's useful and maybe how many political evaluations have been mad so far with this software</p>
+    </div>
+
     @helper.form(action = controllers.routes.MainController.handleUserInput(), args = 'method -> "POST") {
-        @helper.inputText(inputForm("inputText"), '_label -> "Input Text")
+        @helper.textarea(inputForm("inputText"), '_label -> "Your text", 'placeholder -> "Enter your political opinions here")
         @helper.inputCheckboxGroup(inputForm("inputAlgorithms"),
             options = algorithms.toList,
-            '_label -> "Algorithms",
-            '_error -> inputForm("inputAlgorithms").error.map(_.withMessage("please select at least one algorithm"))
+            '_label -> "Algorithms to be used",
+            '_error -> inputForm("inputAlgorithms").error.map(_.withMessage("Please select at least one algorithm"))
         )
 
         <br />
