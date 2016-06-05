@@ -2,18 +2,11 @@ package controllers
 
 import javax.inject._
 
-import akka.actor.ActorSystem
-import akka.actor.Status.{Failure, Success}
 import app.Config
 import models.{FormValidation, HttpRequestModel, ValidatorModel}
-import play.api.data.Form
-import play.api.data.Forms._
-import play.api.libs.ws.WS
 import play.api.mvc._
-import scala.concurrent.ExecutionContext.Implicits.global
 
-import scala.concurrent.duration._
-import scala.concurrent.{Await, ExecutionContext, Future}
+import scala.concurrent.{ExecutionContext, Future}
 
 case class EvaluationRequest(inputText: String, inputAlgorithms: List[String])
 
@@ -53,8 +46,7 @@ class MainController @Inject() extends Controller with FormValidation {
             userData => {
                 import ExecutionContext.Implicits.global
 
-                println("start future")
-                val response = HttpRequestModel.request(userData)
+                /*val response = HttpRequestModel.request(userData)
 
                 response.map { list =>
                     Ok(views.html.index(
@@ -63,7 +55,14 @@ class MainController @Inject() extends Controller with FormValidation {
                         algorithmsForTemplate,
                         list.mkString(" ")
                     ))
-                }
+                }*/
+
+                Future.successful(Ok(views.html.index(
+                    controllers.routes.MainController.index.toString,
+                    userInputForm,
+                    algorithmsForTemplate,
+                    EvaluationResponse(Map("rep" -> 0.3, "dem" -> 0.7))
+                )))
             }
         )
     }}

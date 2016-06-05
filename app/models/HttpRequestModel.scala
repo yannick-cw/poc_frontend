@@ -8,6 +8,7 @@ import akka.http.scaladsl.model._
 import akka.http.scaladsl.unmarshalling.Unmarshal
 import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.{Sink, Source}
+import com.typesafe.config.ConfigFactory
 import controllers.EvaluationRequest
 import protocols.JsonSupport
 import spray.json._
@@ -31,7 +32,7 @@ object HttpRequestModel extends JsonSupport {
             val classifyRequest = ClassifyRequest(request._2.name, request._1)
             Source
               .single(HttpRequest(POST, uri = "/classify",entity = HttpEntity(contentType = ContentTypes.`application/json` , classifyRequest.toJson.compactPrint)))
-              .via(Http(system).outgoingConnection("localhost", 9675))
+              .via(Http(system).outgoingConnection(ConfigFactory.load().getString("service.host"), ConfigFactory.load().getInt("service.port")))
               .runWith(Sink.head)
         }
 

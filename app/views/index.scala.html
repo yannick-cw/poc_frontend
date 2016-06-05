@@ -2,7 +2,7 @@
 @import play.api.i18n.Messages.Implicits._
 @import app.Config
 
-@(routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String], responseData: String = "")(implicit defaultValues: Config.Defaults.type)
+@(routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String], responseData: EvaluationResponse = EvaluationResponse(Map()))(implicit defaultValues: Config.Defaults.type)
 
 @main(routePath) {
 
@@ -21,9 +21,25 @@
         <br />
         <input type="submit" value="Run POC" />
 
-        @if(responseData != "") {
+        @if(responseData.evaluation.nonEmpty) {
             <section class="result">
-                @responseData
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Republican</th>
+                            <th>Democrat</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Naive Bayes</td>
+                            <td>@responseData.evaluation("rep")</td>
+                            <td>@responseData.evaluation("dem")</td>
+                        </tr>
+                    </tbody>
+                </table>
             </section>
         }
     }

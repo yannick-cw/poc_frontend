@@ -29,7 +29,7 @@ h2 {
 }
 
 section {
-    padding:80px 10%;
+    padding:80px 0px;
 }
 
 /*------------------------------------------------------------------------------------*/
@@ -138,4 +138,37 @@ form .buttonset label {
 
 form .buttonset input {
     margin-right:5px;
+}
+
+form input[type="submit"] {
+    display:inline-block;
+    padding:8px 50px;
+    background-color:#5E5ED5;
+    color:#fff;
+    cursor:pointer;
+    border:none;
+}
+
+
+/*************************************************************************/
+/****************************** result ***********************************/
+/*************************************************************************/
+
+.result table {
+    text-align:left;
+    width:100%;
+    border-collapse:collapse
+}
+
+.result table tr > * {
+    padding: 10px;
+}
+
+.result table thead {
+    background-color:#5E5ED5;
+    color:#fff;
+}
+
+.result table tbody tr > * {
+    background-color:#ddd;
 }
