@@ -3,6 +3,7 @@ package controllers
 import javax.inject._
 
 import app.Config
+import models.HttpRequestModel.ClassifyResult
 import models.{FormValidation, HttpRequestModel, ValidatorModel}
 import play.api.mvc._
 
@@ -46,23 +47,22 @@ class MainController @Inject() extends Controller with FormValidation {
             userData => {
                 import ExecutionContext.Implicits.global
 
-                /*val response = HttpRequestModel.request(userData)
+                val response = HttpRequestModel.request(userData)
+                //testing without backend connection ->
+                //val response = Future.successful(List(ClassifyResult("naive_bayes", 0.7, 0.3)))
 
-                response.map { list =>
+                response.map { resultList =>
+                  //TODO check Algorithm case class (needed?)
+                    val algorithmNames = validatorModel.getAlgorithmsByName(resultList.map(_.algorithm)).map(_._2.name)
+                    val result = algorithmNames.zip(resultList).toList
+
                     Ok(views.html.index(
                         controllers.routes.MainController.index.toString,
                         userInputForm,
                         algorithmsForTemplate,
-                        list.mkString(" ")
+                        result
                     ))
-                }*/
-
-                Future.successful(Ok(views.html.index(
-                    controllers.routes.MainController.index.toString,
-                    userInputForm,
-                    algorithmsForTemplate,
-                    EvaluationResponse(Map("rep" -> 0.3, "dem" -> 0.7))
-                )))
+                }
             }
         )
     }}

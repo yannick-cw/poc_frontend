@@ -1,8 +1,9 @@
 @import play.api.Play.current
 @import play.api.i18n.Messages.Implicits._
 @import app.Config
+@import models.HttpRequestModel.ClassifyResult
 
-@(routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String], responseData: EvaluationResponse = EvaluationResponse(Map()))(implicit defaultValues: Config.Defaults.type)
+@(routePath: String, inputForm: Form[EvaluationRequest], algorithms: Map[String, String], responseData: List[(String, ClassifyResult)] = List.empty)(implicit defaultValues: Config.Defaults.type)
 
 @main(routePath) {
 
@@ -21,7 +22,7 @@
         <br />
         <input type="submit" value="Run POC" />
 
-        @if(responseData.evaluation.nonEmpty) {
+        @if(responseData.nonEmpty) {
             <section class="result">
                 <table>
                     <thead>
@@ -33,14 +34,17 @@
                     </thead>
 
                     <tbody>
-                        <tr>
-                            <td>Naive Bayes</td>
-                            <td>@responseData.evaluation("rep")</td>
-                            <td>@responseData.evaluation("dem")</td>
-                        </tr>
+                        @for(result <- responseData) {
+                            <tr>
+                                <td>@result._1</td>
+                                <td>@result._2.rep</td>
+                                <td>@result._2.dem</td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </section>
+
         }
     }
 }

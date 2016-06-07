@@ -17,7 +17,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 object HttpRequestModel extends JsonSupport {
     case class ClassifyRequest(algorithm: String, text: String)
-    case class ClassifyResult(algorithm: String, rep: Double, dem: Double)
+    case class ClassifyResult(algorithm: String = "", rep: Double = 0.0, dem: Double = 0.0)
 
 
     implicit val system = ActorSystem()
