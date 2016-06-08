@@ -29,7 +29,7 @@ object HttpRequestModel extends JsonSupport {
 
     def request(serviceRequest: EvaluationRequest) : Future[List[ClassifyResult]] = {
         val futures = for (request <- ValidatorModel.getAlgorithmsByName(serviceRequest.inputAlgorithms)) yield {
-            val classifyRequest = ClassifyRequest(request._2.name, request._1)
+            val classifyRequest = ClassifyRequest(request._1, serviceRequest.inputText)
             Source
               .single(HttpRequest(POST, uri = "/classify",entity = HttpEntity(contentType = ContentTypes.`application/json` , classifyRequest.toJson.compactPrint)))
               .via(Http(system).outgoingConnection(ConfigFactory.load().getString("service.host"), ConfigFactory.load().getInt("service.port")))
