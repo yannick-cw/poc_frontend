@@ -51,12 +51,10 @@ class MainController @Inject() extends Controller with FormValidation {
                 //testing without backend connection ->
                 //val response = Future.successful(List(ClassifyResult("naive_bayes", 0.7, 0.3)))
 
-                response.map { resultList =>                    val algorithmNames = validatorModel.getAlgorithmsByName(resultList.map(_.algorithm)).map(_._2.name)
-
-
+                response.map { resultList =>
+                    val algorithmNames = validatorModel.getAlgorithmsByName(resultList.map(_.algorithm)).map(_._2.name)
                     println(resultList)
-                  //TODO check Algorithm case class (needed?)
-                    println(algorithmNames)
+
                     val result = algorithmNames.zip(resultList).toList
 
                     println(result)

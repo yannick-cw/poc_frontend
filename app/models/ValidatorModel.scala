@@ -14,12 +14,14 @@ object ValidatorModel {
     object LearningAlgorithmTypes {
         //TODO request ip's from algorithm-services
         case object NaiveBayes extends LearningAlgorithm("Naive Bayes", "localhost")
+        case object NaiveBayesWithTfIdf extends LearningAlgorithm("Naive Bayes with TF*IDF", "localhost")
     }
 
 
     object LearningAlgorithms {
         val validAgorithms:scala.collection.immutable.Map[String, LearningAlgorithm] = Map(
-            "naive_bayes" -> LearningAlgorithmTypes.NaiveBayes
+            "naive_bayes" -> LearningAlgorithmTypes.NaiveBayes,
+            "naive_bayes_tfidf" -> LearningAlgorithmTypes.NaiveBayesWithTfIdf
         )
 
 

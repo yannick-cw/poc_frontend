@@ -47,4 +47,31 @@
 
         }
     }
+    <section>
+        <div id="chartdiv" style="width: 640px; height: 400px;"></div>
+
+        <script type="text/javascript">
+
+            var chart = AmCharts.makeChart("chartdiv",{
+              "type"    : "pie",
+              "titleField"  : "party",
+              "valueField"  : "percentage",
+              "dataProvider"  : [
+                {
+                  "party": "Republican",
+                  "percentage": 8
+                },
+                {
+                  "party": "Democrat",
+                  "percentage": 6
+                }
+              ]
+            });
+
+            chart.dataProvider
+
+
+        </script>
+
+    </section>
 }

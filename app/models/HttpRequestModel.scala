@@ -30,16 +30,19 @@ object HttpRequestModel extends JsonSupport {
     def request(serviceRequest: EvaluationRequest) : Future[List[ClassifyResult]] = {
         val futures = for (request <- ValidatorModel.getAlgorithmsByName(serviceRequest.inputAlgorithms)) yield {
             val classifyRequest = ClassifyRequest(request._1, serviceRequest.inputText)
+             println(s"send: $classifyRequest")
             Source
               .single(HttpRequest(POST, uri = "/classify",entity = HttpEntity(contentType = ContentTypes.`application/json` , classifyRequest.toJson.compactPrint)))
               .via(Http(system).outgoingConnection(ConfigFactory.load().getString("service.host"), ConfigFactory.load().getInt("service.port")))
               .runWith(Sink.head)
         }
 
+
+
         val futureClassifyResult = futures.map{ future =>
           future.flatMap{
               case response@HttpResponse(StatusCodes.OK, _, _, _) => Unmarshal(response).to[ClassifyResult]
-              case response@HttpResponse(_, _, _, _) => Future.successful(ClassifyResult("ERROR", 0, 0))
+              case response@HttpResponse(_, _, _, _) => println(response); Future.successful(ClassifyResult("ERROR", 0, 0))
           }
         }
 
