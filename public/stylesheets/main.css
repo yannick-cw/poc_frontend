@@ -1,12 +1,21 @@
+
+/*
+theme-blue: #8181e2;
+theme-blue-light: #f9f9ff;
+*/
 * {
     margin:0px;
     padding:0px;
     box-sizing:border-box;
     text-decoration:none;
     font-family: 'Raleway';
-    font-size:14px;
+    font-size:16px;
     line-height:20px;
     letter-spacing:0.03rem;
+}
+
+html, body {
+    background-color:#f7f7ff;
 }
 
 h1, h2 {
@@ -17,19 +26,32 @@ h1, h2 {
 
 h1 {
     padding:20px;
-    font-size: 4.5rem;
+    font-size: 6.5rem;
     letter-spacing:0.5rem;
     line-height:6rem
 }
 
 h2 {
-    font-size:1.6rem;
+    font-size:1.8rem;
     margin-bottom:10px;
-    letter-spacing:0.15rem
+    letter-spacing:0.2rem
 }
 
 section {
-    padding:80px 0px;
+    padding:130px 0px;
+}
+
+.overlay {
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    background-color:rgba(255,255,255,.95);
+    background-image: url("../images/balls.svg");
+    background-position:center;
+    background-repeat:no-repeat;
 }
 
 /*------------------------------------------------------------------------------------*/
@@ -37,19 +59,24 @@ section {
 /*------------------------------------------------------------------------------------*/
 
 section.header-wrapper {
-    background-color:#5E5ED5;
+    background-color:#8181e2;
     padding-top:0px;
     text-align:center;
+    background-image:url('../images/bg_top.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:auto 100%;
 }
 
 section.header-wrapper h2 {
     border-top:1px solid #fff;
     display:inline-block;
-    padding-top:3px;
+    padding-top:10px;
 }
 
 nav {
     margin-bottom:10px;
+    padding-bottom:40px;
 }
 
 nav ul {
@@ -63,7 +90,7 @@ nav ul li {
 
 nav ul li a {
     color:#fff;
-    padding:15px 20px;
+    padding:20px;
     display:block;
     cursor:pointer;
     text-transform:uppercase;
@@ -80,14 +107,28 @@ nav ul li a:hover, nav ul li.active a {
 /*------------------------------------------------------------------------------------*/
 
 section.content {
-    width:70%;
+    width:60%;
     min-width:300px;
     margin-left:auto;
     margin-right:auto;
 }
 
 .text-block {
-    margin-bottom:20px;
+    margin-bottom:120px;
+}
+
+.text-block .quote i {
+    display:block;
+    font-size:1.6rem;
+    line-height:2.5rem;
+    margin-bottom:30px;
+    text-align: center;
+}
+
+.text-block .quote span {
+    font-size:1.2rem;
+    display:block;
+    text-align:center;
 }
 
 .text-block > *:not(:last-child) {
@@ -96,10 +137,66 @@ section.content {
 
 form {
     width:100%;
+    font-size:0px;
+    margin-bottom:20px;
+    background-color:#8181e2;
+    padding:10px;
+    padding-bottom:0px;
+    color:#fff;
+    background-image:url('../images/closed.png');
+    background-position:right 14px top 20px;
+    background-repeat:no-repeat;
+}
+
+form.active {
+    background-image:url('../images/open.png');
+        background-position:right 14px top 25px;
+
+}
+
+
+
+form legend {
+    font-size:18px;
+    padding-top: 10px;
+    padding-bottom:20px;
+    width:100%;
+    display:block;
+    cursor:pointer;
+    background-repeat:no-repeat;
+    background-position:left top;
+    background-image:url('../images/search.png');
+    padding-left:70px;
+}
+
+form.active legend {
+    font-weight:bold;
+}
+
+form label, form dt {
+    font-size:18px;
+}
+
+form .form-content-block {
+    position:relative;
+    padding-top:20px;
+    padding-bottom:10px;
+    border-top:1px solid #fff;
+    font-size:0px;
 }
 
 form dl {
-    margin-bottom:20px;
+    vertical-align:top
+}
+
+#inputText_field, #inputAlgorithms_field {
+    display:inline-block;
+}
+
+
+#inputText_field {
+    width:calc(100% - 310px);
+    margin-right:10px;
 }
 
 form dl dt {
@@ -110,30 +207,41 @@ form dl dt {
 
 form textarea {
     padding:20px;
-    box-shadow:0px 1px 5px 0px #ccc;
     width:100%;
     min-height: 300px;
     resize:vertical;
-    border:1px solid #bbb;
-    border-radius:3px;
-    margin-bottom:10px;
+    border:none;
 }
 
-form #inputText_field .info {
-    display:inline-block;
-    padding-right:0px;
-    margin-bottom:10px;
+.info, dd.error {
+    display:none !important;
 }
 
-form #inputText_field .info:not(:last-of-type):after {
-    content: ", ";
-    display:inline-block;
-    padding-right:10px;
+#inputText_field dd {
+    line-height:0px;
+}
+
+.form-block-right {
+    width:300px;
+    position:absolute;
+    right:0px;
+    top:20px;
+    bottom:0px;
 }
 
 form .buttonset label {
-    margin-right:20px;
     margin-top:-3px;
+}
+
+form .buttonset label:not(:last-of-type)::after {
+    content:"";
+    display:block;
+    height:30px;
+    cursor:default;
+}
+
+form .buttonset input, form .buttonset label, form input[type="submit"]  {
+    cursor:pointer;
 }
 
 form .buttonset input {
@@ -142,33 +250,165 @@ form .buttonset input {
 
 form input[type="submit"] {
     display:inline-block;
-    padding:8px 50px;
-    background-color:#5E5ED5;
+    position:absolute;
+    bottom:10px;
+    width:100%;
+    padding:10px 50px;
+    background-color:#8181e2;
+    border:1px solid #fff !important;
     color:#fff;
-    cursor:pointer;
     border:none;
 }
 
+form input[type="submit"]:hover {
+    background-color:#fff;
+    color:#8181e2;
+}
+
+
+/*************************************************************************/
+/************************** twitter form ********************************/
+/*************************************************************************/
+
+#twitter-form legend {
+    background-image:url('../images/twitter.png');
+    background-position:left top 2px;
+}
+
+
+#twitter-form #username_field {
+    font-size:0px;
+}
+
+#twitter-form #username_field , #twitter-form #username_field > * {
+    display:inline-block;
+}
+
+#twitter-form #username {
+    padding: 11px;
+    border: none;
+    margin-top: 3px;
+}
+
+#twitter-form #twitter-form-submit {
+    width:300px;
+    right:0px;
+    position:relative;
+    vertical-align:bottom;
+    bottom:0px;
+}
+
+#twitter-form #username_field {
+    width: calc(100% - 301px);
+}
+
+#twitter-form #username_field dt{
+    margin-bottom:0px;
+    width:120px;
+}
+
+#twitter-form #username_field dd {
+    width: calc(100% - 131px);
+}
+
+#twitter-form #username {
+    width:100%;
+}
 
 /*************************************************************************/
 /****************************** result ***********************************/
 /*************************************************************************/
 
+.result {
+    padding-top:0px;
+}
+
 .result table {
+    display:none;
     text-align:left;
     width:100%;
-    border-collapse:collapse
+    table-layout: fixed;
+}
+
+.result table .headline {
+    text-align:center;
+    font-size:2.4rem;
+    background:#f9f9ff;
+    color:#000;
+    font-family:'Caudex';
+    padding:40px;
 }
 
 .result table tr > * {
-    padding: 10px;
+    padding: 20px;
 }
 
 .result table thead {
-    background-color:#5E5ED5;
+    background-color:#8181e2;
     color:#fff;
 }
 
+.result table thead th {
+    text-align:center;
+}
+
 .result table tbody tr > * {
-    background-color:#ddd;
+    background-color:#eee;
+    transition:.2s;
+}
+
+.result table tbody tr:hover > * {
+    background-color:#e2e2e2;
+}
+
+#resultRows td {
+    position:relative;
+}
+
+#resultRows td p {
+    position:relative;
+}
+
+
+#resultRows td > div {
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    overflow:visible;
+    min-width:2px;
+}
+
+#resultRows td > .democrats {
+    right:0px;
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#56b5dd+2,34aae0+100 */
+   background: #56b5dd; /* Old browsers */
+   background: -moz-linear-gradient(top,  #56b5dd 2%, #34aae0 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(top,  #56b5dd 2%,#34aae0 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to bottom,  #56b5dd 2%,#34aae0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#56b5dd', endColorstr='#34aae0',GradientType=0 ); /* IE6-9 */
+}
+
+#resultRows td > .republicans {
+    left:0px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ea1c24+0,cf181f+100 */
+    background: #ea1c24; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ea1c24 0%, #cf181f 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ea1c24 0%,#cf181f 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ea1c24 0%,#cf181f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea1c24', endColorstr='#cf181f',GradientType=0 ); /* IE6-9 */
+    text-align:right;
+}
+
+#resultRows td > div span {
+    padding:18px;
+    display:block;
+    color:#fff;
+    font-wight:bold;
+}
+
+footer {
+    padding:10px;
+    font-size:.8rem;
+    text-align:center;
+    color:#777;
 }

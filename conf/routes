@@ -20,3 +20,4 @@ GET     /assets/*file                   controllers.Assets.versioned(path="/publ
 
 #user input from formular
 POST /                         controllers.MainController.handleUserInput()
+POST /twitter                  controllers.MainController.handleTwitterRequest()

@@ -9,19 +9,24 @@ object ValidatorModel {
 
     case class InputData(inputText: String, usedAlgorithms: List[LearningAlgorithm])
 
-    abstract class LearningAlgorithm(val name: String, val ip: Uri)
+    abstract class LearningAlgorithm(val name: String)
 
     object LearningAlgorithmTypes {
-        //TODO request ip's from algorithm-services
-        case object NaiveBayes extends LearningAlgorithm("Naive Bayes", "localhost")
-        case object NaiveBayesWithTfIdf extends LearningAlgorithm("Naive Bayes with TF*IDF", "localhost")
+        case object NaiveBayes extends LearningAlgorithm("NaiveBayes")
+        case object NaiveBayesWithTfIdf extends LearningAlgorithm("NaiveBayes with TF*IDF")
+        case object NaiveBayesNet extends LearningAlgorithm("BayesNet")
+        case object NaiveBayesMultiNomial extends LearningAlgorithm("NaiveBayes Multinomial")
+        case object KNN extends LearningAlgorithm("k-Nearest Neighbors")
     }
 
 
     object LearningAlgorithms {
         val validAgorithms:scala.collection.immutable.Map[String, LearningAlgorithm] = Map(
             "naive_bayes" -> LearningAlgorithmTypes.NaiveBayes,
-            "naive_bayes_tfidf" -> LearningAlgorithmTypes.NaiveBayesWithTfIdf
+            "naive_bayes_tfidf" -> LearningAlgorithmTypes.NaiveBayesWithTfIdf,
+            "bayes_net" -> LearningAlgorithmTypes.NaiveBayesNet,
+            "bayes_multinomial" -> LearningAlgorithmTypes.NaiveBayesMultiNomial,
+            "knn" -> LearningAlgorithmTypes.KNN
         )
 
 
