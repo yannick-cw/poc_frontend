@@ -127,7 +127,14 @@
                     dem : Math.round(data.dem / overall * 10000) / 100,
                     rep : Math.round(data.rep / overall * 10000) / 100
                   }
-                  $(row).append('<td>' + algorithms.get(algorithm) + '</td>');
+
+                  if(algorithm == "twitter") {
+                    var algorithmName = "Twitter Basic";
+                  } else {
+                    var algorithmName = algorithms.get(algorithm);
+                  }
+
+                  $(row).append('<td>' + algorithmName + '</td>');
                   $(row).append('<td><div class="democrats" data-percentage=' + percentages.dem + '><span></span></div></td>');
                   $(row).append('<td><div class="republicans" data-percentage=' + percentages.rep + '><span></span></div></td>');
                   $(resultWrap).append(row);

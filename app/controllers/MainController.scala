@@ -65,26 +65,14 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                 println(userData)
                 import ExecutionContext.Implicits.global
 
-                //testing without backend connection ->
-                //val response = Future.successful(List(ClassifyResult("naive_bayes", 0.7, 0.3)))
                 val filledFormular = userInputForm.fill(userData)
 
                 try {
                     val response = HttpRequestModel.request(userData)
                     response.map { result =>
-                        val res = List(
-                            ClassifyResult("naive_bayes", 0.7, 0.3),
-                            ClassifyResult("naive_bayes_tfidf", 0.4, 0.6)
-                        )
-                        Ok(Json.toJson(res.map { r =>
-                            (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
-                        }.toMap ))
-
-                        /*
                         Ok(Json.toJson(result.map { r =>
                             (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
                         }.toMap ))
-                        */
                     }
 
                 } catch {
@@ -120,39 +108,16 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
             },
 
             userData => {
-                import ExecutionContext.Implicits.global
-
-                //testing without backend connection ->
-                //val response = Future.successful(List(ClassifyResult("naive_bayes", 0.7, 0.3)))
                 val filledFormular = twitterRequestForm.fill(userData)
 
                 try {
 
-                    val res = List(
-                        ClassifyResult("naive_bayes", 0.7, 0.3),
-                        ClassifyResult("naive_bayes_tfidf", 0.4, 0.6)
-                    )
-
-                    Future.successful(Ok(Json.toJson(res.map { r =>
-                        (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
-                    }.toMap )))
-
-                    /*
                     val response = HttpRequestModel.requestTwitter(userData)
                     response.map { result =>
-                        val res = List(
-                            ClassifyResult("naive_bayes", 0.7, 0.3),
-                            ClassifyResult("naive_bayes_tfidf", 0.4, 0.6)
-                        )
-                        Ok(Json.toJson(res.map { r =>
-                            (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
-                        }.toMap ))
-
-                        Ok(Json.toJson(result.map { r =>
-                            (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
-                        }.toMap ))
+                        Ok(Json.toJson(Map(
+                            "twitter", Map("dem" -> result.dem, "rep" -> result.rep)
+                        )))
                     }
-                    */
 
                 } catch {
                     case _: Exception =>
