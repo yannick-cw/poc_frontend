@@ -23,7 +23,7 @@ object ValidatorModel {
     object LearningAlgorithms {
         val validAgorithms:scala.collection.immutable.Map[String, LearningAlgorithm] = Map(
             "naive_bayes" -> LearningAlgorithmTypes.NaiveBayes,
-            "naive_bayes_tfidf" -> LearningAlgorithmTypes.NaiveBayesWithTfIdf,
+//            "naive_bayes_tfidf" -> LearningAlgorithmTypes.NaiveBayesWithTfIdf,
             "bayes_net" -> LearningAlgorithmTypes.NaiveBayesNet,
             "bayes_multinomial" -> LearningAlgorithmTypes.NaiveBayesMultiNomial,
             "knn" -> LearningAlgorithmTypes.KNN
