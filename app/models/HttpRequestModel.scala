@@ -50,7 +50,7 @@ object HttpRequestModel extends JsonSupport {
 
     def requestTwitter(twitterRequest: TwitterRequest) = {
         val request = Source
-          .single(HttpRequest(POST, entity = HttpEntity(contentType = ContentTypes.`application/json` , twitterRequest.toJson.compactPrint)))
+          .single(HttpRequest(POST, uri = "/classifyUser", entity = HttpEntity(contentType = ContentTypes.`application/json` , twitterRequest.toJson.compactPrint)))
           .via(Http(system).outgoingConnection(ConfigFactory.load().getString("twitter.host"), ConfigFactory.load().getInt("twitter.port")))
           .runWith(Sink.head)
 

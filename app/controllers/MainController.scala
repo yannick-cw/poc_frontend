@@ -9,6 +9,7 @@ import play.api.mvc._
 import play.api.data.Form
 import play.api.libs.json.Json
 import protocols.JsonSupport
+import scala.concurrent.ExecutionContext.Implicits.global
 import spray.json._
 
 import scala.concurrent.{ExecutionContext, Future}
@@ -115,7 +116,7 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                     val response = HttpRequestModel.requestTwitter(userData)
                     response.map { result =>
                         Ok(Json.toJson(Map(
-                            "twitter", Map("dem" -> result.dem, "rep" -> result.rep)
+                            ("twitter", Map("dem" -> result.dem, "rep" -> result.rep))
                         )))
                     }
 
