@@ -115,7 +115,9 @@
                 var width = 0;
                 var id = setInterval(frame, 20);
                 function frame() {
-                    if (width >= targetPercentage) {
+                    if (width >= targetPercentage - 1 ) {
+                        $(elem).width(targetPercentage + '%');
+                        $(elem).children('span').html(targetPercentage * 1 + '%');
                         clearInterval(id);
                     } else {
                         width++;
@@ -141,7 +143,7 @@
                   } else {
                       var percentages = {
                         dem : Math.round(data.dem / overall * 10000) / 100,
-                        rep : Math.round(data.rep / overall * 10000) / 100
+                        rep : 100 - Math.round(data.dem / overall * 10000) / 100
                       }
                     }
 
