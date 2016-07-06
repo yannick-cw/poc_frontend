@@ -2,6 +2,7 @@ package controllers
 
 import javax.inject._
 
+import akka.stream.StreamTcpException
 import app.Config
 import models.HttpRequestModel.ClassifyResult
 import models.{FormValidation, HttpRequestModel, ValidatorModel}
@@ -74,6 +75,10 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                         Ok(Json.toJson(result.map { r =>
                             (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
                         }.toMap ))
+                    }.recover{
+                        case tcpError:akka.stream.StreamTcpException => Ok(Json.toJson(Map(
+                            ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
+                        )))
                     }
 
                 } catch {
@@ -118,6 +123,12 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                         Ok(Json.toJson(Map(
                             ("twitter", Map("dem" -> result.dem, "rep" -> result.rep))
                         )))
+                    }.recover{
+                        case tcpError:akka.stream.StreamTcpException => {
+                            Ok(Json.toJson(Map(
+                                ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
+                            )))
+                        }
                     }
 
                 } catch {

@@ -40,7 +40,7 @@ object HttpRequestModel extends JsonSupport {
         val futureClassifyResult = futures.map{ future =>
           future.flatMap{
               case response@HttpResponse(StatusCodes.OK, _, _, _) => Unmarshal(response).to[ClassifyResult]
-              case response@HttpResponse(_, _, _, _) => println(response); Future.successful(ClassifyResult("ERROR", 0, 0))
+              case response@HttpResponse(_, _, _, _) => Future.successful(ClassifyResult("ERROR", 0, 0))
           }
         }
 
@@ -56,7 +56,7 @@ object HttpRequestModel extends JsonSupport {
 
         request.flatMap {
             case response@HttpResponse(StatusCodes.OK, _, _, _) => Unmarshal(response).to[ClassifyResult]
-            case response@HttpResponse(_, _, _, _) => println(response); Future.successful(ClassifyResult("ERROR", 0, 0))
+            case response@HttpResponse(_, _, _, _) => Future.successful(ClassifyResult("ERROR", 0, 0))
         }
     }
 

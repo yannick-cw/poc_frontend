@@ -323,17 +323,24 @@ form input[type="submit"]:hover {
     padding-top:0px;
 }
 
+.result h2 {
+    line-height: 8rem;
+    color: #000;
+    text-align: center;
+    font-size: 2rem;
+}
+
 .result table {
-    display:none;
     text-align:left;
-    width:100%;
     table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .result table .headline {
     text-align:center;
     font-size:2.4rem;
-    background:#f9f9ff;
+    background:#f7f7ff;
     color:#000;
     font-family:'Caudex';
     padding:40px;
@@ -352,6 +359,10 @@ form input[type="submit"]:hover {
     text-align:center;
 }
 
+.result table thead th:first-of-type {
+    width:230px;
+}
+
 .result table tbody tr > * {
     background-color:#eee;
     transition:.2s;
@@ -363,6 +374,13 @@ form input[type="submit"]:hover {
 
 #resultRows td {
     position:relative;
+    width:auto;
+    overflow:hidden;
+}
+
+#resultRows td:first-child {
+    width:230px;
+    border-right:2px solid #fff;
 }
 
 #resultRows td p {
@@ -400,10 +418,20 @@ form input[type="submit"]:hover {
 }
 
 #resultRows td > div span {
-    padding:18px;
     display:block;
     color:#fff;
     font-wight:bold;
+    position:absolute;
+    font-size:.7rem;
+}
+
+#resultRows td > .republicans span {
+    right:5px;
+    top:32%;
+}
+#resultRows td > .democrats span {
+    left:5px;
+    top:32%;
 }
 
 footer {

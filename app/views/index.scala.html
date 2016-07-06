@@ -10,46 +10,49 @@
 
 <div class="text-block">
     <p class="quote">
-        <i>"It is said that if you know your enemies and know yourself, you will not be imperiled in a hundred battles; if you do not know your enemies but do know yourself, you will win one and lose one; if you do not know your enemies nor yourself, you will be imperiled in every single battle."</i>
+        <i>"It is said that if you know your enemies and know yourself, you will not be imperiled in a hundred battles;
+            if you do not know your enemies but do know yourself, you will win one and lose one; if you do not know your
+            enemies nor yourself, you will be imperiled in every single battle."</i>
         <span>-- Sun Tzu --</span>
     </p>
 </div>
 
 @helper.form(action = controllers.routes.MainController.handleUserInput(), args = 'method -> "POST", 'id -> "poc-form") {
 
-    <legend>My political opinion</legend>
+<legend>My political opinion</legend>
 
-    <div class="form-content-block">
+<div class="form-content-block">
 
 
-        @helper.textarea(viewData.inputForm("inputText"), '_label -> "Your text (10 - 10.000 characters)", 'placeholder -> "Enter your political opinions here")
+    @helper.textarea(viewData.inputForm("inputText"), '_label -> "Your text (10 - 10.000 characters)", 'placeholder ->
+    "Enter your political opinions here")
 
-        <dl class="form-block-right">
-            <dd>
-                @helper.inputCheckboxGroup(viewData.inputForm("inputAlgorithms"),
-                options = viewData.inputAlgorithms.toList,
-                '_label -> "Algorithms to be used",
-                '_error -> viewData.inputForm("inputAlgorithms").error.map(_.withMessage("Please select at least one algorithm"))
-                )
-            </dd>
-            <dd>
-                <input type="submit" class="form-submit" id="form-submit" value="Classify my opinion"/>
-            </dd>
-        </dl>
-    </div>
+    <dl class="form-block-right">
+        <dd>
+            @helper.inputCheckboxGroup(viewData.inputForm("inputAlgorithms"),
+            options = viewData.inputAlgorithms.toList,
+            '_label -> "Algorithms to be used",
+            '_error -> viewData.inputForm("inputAlgorithms")
+            )
+        </dd>
+        <dd>
+            <input type="submit" class="form-submit" id="form-submit" value="Classify my opinion"/>
+        </dd>
+    </dl>
+</div>
 }
 
 
 @helper.form(action = controllers.routes.MainController.handleTwitterRequest(), args = 'method -> "POST", 'id -> "twitter-form", 'action -> "twitter") {
 
-    <legend>Classify Twitter account</legend>
+<legend>Classify Twitter account</legend>
 
-    <div class="form-content-block">
+<div class="form-content-block">
 
-        @helper.inputText(viewData.twitterForm("username"), '_label -> "Twitter user", 'placeholder -> "twitter username")
+    @helper.inputText(viewData.twitterForm("username"), '_label -> "Twitter user", 'placeholder -> "twitter username")
 
-        <input type="submit" id="twitter-form-submit" value="Classify twitter user"/>
-    </div>
+    <input type="submit" id="twitter-form-submit" value="Classify twitter user"/>
+</div>
 
 }
 
@@ -57,19 +60,23 @@
 
 
 <section class="result">
-    <table>
-        <thead>
-        <tr><th class="headline" colspan="3">POC results</th></tr>
-        <tr>
-            <th>Algorithm</th>
-            <th>Democrat (%)</th>
-            <th>Republican (%)</th>
-        </tr>
-        </thead>
+    <div class="result-toggle">
 
-        <tbody id="resultRows">
-        </tbody>
-    </table>
+        <h2>POC results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>Democrat (%)</th>
+                    <th>Republican (%)</th>
+                </tr>
+            </thead>
+
+            <tbody id="resultRows">
+            </tbody>
+        </table>
+
+    </div>
 </section>
 
 <section class="overlay"></section>
@@ -79,6 +86,8 @@
         $(document).ready(function() {
             var messageWrap = $("#message");
             var resultWrap = $("#resultRows");
+            var resultToggle = $('.result-toggle');
+            $(resultToggle).hide();
             var resultTable = $('.result table');
 
             var algorithms = new Map();
@@ -103,7 +112,7 @@
 
 
             function move(elem, targetPercentage) {
-                var width = 10;
+                var width = 0;
                 var id = setInterval(frame, 20);
                 function frame() {
                     if (width >= targetPercentage) {
@@ -123,21 +132,36 @@
                 $.each(responseData, function(algorithm, data ) {
                   var row = $('<tr />');
                   var overall = data.dem + data.rep
-                  var percentages = {
-                    dem : Math.round(data.dem / overall * 10000) / 100,
-                    rep : Math.round(data.rep / overall * 10000) / 100
-                  }
 
-                  if(algorithm == "twitter") {
-                    var algorithmName = "Twitter Basic";
+                  if(overall == 0) {
+                      var percentages = {
+                        dem : 0,
+                        rep : 0
+                      }
                   } else {
-                    var algorithmName = algorithms.get(algorithm);
-                  }
+                      var percentages = {
+                        dem : Math.round(data.dem / overall * 10000) / 100,
+                        rep : Math.round(data.rep / overall * 10000) / 100
+                      }
+                    }
 
-                  $(row).append('<td>' + algorithmName + '</td>');
-                  $(row).append('<td><div class="democrats" data-percentage=' + percentages.dem + '><span></span></div></td>');
-                  $(row).append('<td><div class="republicans" data-percentage=' + percentages.rep + '><span></span></div></td>');
-                  $(resultWrap).append(row);
+                    if(algorithm != "ERROR") {
+
+                        if(algorithm == "twitter") {
+                            var algorithmName = "Twitter Basic";
+                        } else {
+                            var algorithmName = algorithms.get(algorithm);
+                        }
+
+                        $(row).append('<td>' + algorithmName + '</td>');
+                        $(row).append('<td><div class="democrats" data-percentage=' + percentages.dem + '><span></span></div></td>');
+                        $(row).append('<td><div class="republicans" data-percentage=' + percentages.rep + '><span></span></div></td>');
+                        $(resultWrap).append(row);
+
+                    } else {
+                        $(resultToggle).hide(0);
+                        $(messageWrap).html("Connection error, please try again later");
+                    }
                 });
 
                 animateBars();
@@ -159,12 +183,13 @@
                        data: $(this).serialize(),
                        success: function(data) {
                             $('.overlay').fadeOut(100);
-                            $(resultTable).show(0);
+                             $(resultToggle).show(0);
                             fillDataWrap(data);
                        },
                        error: function(XMLHttpRequest, textStatus, errorThrown) {
                             $('.overlay').fadeOut(100);
                             $(messageWrap).html("Please check your input");
+                            $(resultToggle).hide(0);
                         }
                      });
 
@@ -196,6 +221,8 @@
 
 
         })
+
+
 
 </script>
 
