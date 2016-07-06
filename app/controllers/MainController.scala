@@ -68,31 +68,15 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                 import ExecutionContext.Implicits.global
 
                 val filledFormular = userInputForm.fill(userData)
-
-                try {
-                    val response = HttpRequestModel.request(userData)
-                    response.map { result =>
-                        Ok(Json.toJson(result.map { r =>
-                            (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
-                        }.toMap ))
-                    }.recover{
-                        case tcpError:akka.stream.StreamTcpException => Ok(Json.toJson(Map(
-                            ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
-                        )))
-                    }
-
-                } catch {
-                    case _: Exception =>
-                        Future.successful(
-                            Ok(views.html.index(
-                                ViewData(
-                                    controllers.routes.MainController.index.toString,
-                                    filledFormular,
-                                    algorithmsForTemplate,
-                                    twitterForm = twitterRequestForm
-                                )
-                            ))
-                        )
+                val response = HttpRequestModel.request(userData)
+                response.map { result =>
+                    Ok(Json.toJson(result.map { r =>
+                        (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
+                    }.toMap ))
+                }.recover{
+                    case tcpError:akka.stream.StreamTcpException => Ok(Json.toJson(Map(
+                        ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
+                    )))
                 }
             }
         )
@@ -116,33 +100,17 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
             userData => {
                 val filledFormular = twitterRequestForm.fill(userData)
 
-                try {
-
-                    val response = HttpRequestModel.requestTwitter(userData)
-                    response.map { result =>
+                val response = HttpRequestModel.requestTwitter(userData)
+                response.map { result =>
+                    Ok(Json.toJson(Map(
+                        ("twitter", Map("dem" -> result.dem, "rep" -> result.rep))
+                    )))
+                }.recover{
+                    case tcpError:akka.stream.StreamTcpException => {
                         Ok(Json.toJson(Map(
-                            ("twitter", Map("dem" -> result.dem, "rep" -> result.rep))
+                            ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
                         )))
-                    }.recover{
-                        case tcpError:akka.stream.StreamTcpException => {
-                            Ok(Json.toJson(Map(
-                                ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
-                            )))
-                        }
                     }
-
-                } catch {
-                    case _: Exception =>
-                        Future.successful(
-                            Ok(views.html.index(
-                                ViewData(
-                                    controllers.routes.MainController.index.toString,
-                                    userInputForm,
-                                    algorithmsForTemplate,
-                                    twitterForm = filledFormular
-                                )
-                            ))
-                        )
                 }
             }
         )
