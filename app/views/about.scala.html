@@ -3,8 +3,37 @@
 @(routePath: String)(implicit defaultValues: Config.Defaults.type)
 
 @main(routePath) {
+<article class="content-page">
+    <h2>About the team</h2>
 
-<p>Some about data here...</p>
+    <section class="level level-1">
 
+        <h3>Team members</h3>
+
+        <section class="level level-2">
+            <ul>
+                <li>Yannick Gladow</li>
+                <li>Simon Wanner</li>
+            </ul>
+
+        </section>
+    </section>
+
+    <section class="level level-1">
+
+        <h3>Further information</h3>
+
+        <section class="level level-2">
+            <p>The "POC - Political Opinion Classifier" was part of the "Data Science" workshop at the Ludwig-Maximilian University Munich in the summer term of 2016.</p>
+
+
+        </section>
+    </section>
+
+    <section class="level level-1">
+            <img width="200px" height="auto" class="logo" src="@routes.Assets.versioned("images/lmu.png")" />
+    </section>
+
+</article>
 }
 

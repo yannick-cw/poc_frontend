@@ -638,6 +638,12 @@ table tbody tr:hover > * {
   top: 33%;
   right: 10px;
 }
+/* line 209, ../sass/parts/content-pages.scss */
+.content-page section .logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /*************************************************************************/
 /****************************** result ***********************************/

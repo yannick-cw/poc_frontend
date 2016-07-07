@@ -169,7 +169,7 @@
 
         table {
             margin-bottom:40px;
-            
+
             thead {
                 border-bottom:10px solid $theme-blue-light;
             }
@@ -205,5 +205,12 @@
 
             }
         }
+
+        .logo {
+            display:block;
+            margin-left:auto;
+            margin-right:auto;
+        }
+
     }
 }
