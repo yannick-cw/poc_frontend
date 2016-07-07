@@ -1,0 +1,149 @@
+@media all and (max-width: 1080px) {
+
+    nav {
+        ul {
+            margin-left:0px;
+        }
+    }
+
+    section {
+        padding:50px 0px;
+
+        &.header-wrapper {
+            h2 {
+                line-height:1.5;
+            }
+        }
+
+        .text-block {
+            display:none;
+        }
+
+        &.content {
+            width:90%;
+        }
+
+        #poc-form {
+            .form-content-block {
+                > * {
+                    &:not(:last-child) {
+                        margin-bottom:20px;
+                    }
+
+                    position:relative;
+                    width:100%;
+                    display:block;
+                }
+
+                .form-block-right {
+                    position:relative;
+                    top:0px;
+
+                    #inputAlgorithms_field {
+                        margin-bottom:20px;
+                    }
+
+                    #form-submit {
+                        position:relative;
+                        padding:30px;
+                        bottom:auto;
+                    }
+                }
+            }
+        }
+
+        #twitter-form {
+
+            .suggestions {
+                li {
+                    display:block;
+                    margin-right:0px;
+                }
+            }
+
+            #username_field {
+                width:100%;
+                white-space:nowrap;
+                margin-bottom:10px;
+                > * {
+                    width:50%;
+                }
+            }
+
+            #twitter-form-submit {
+                width:100%;
+                padding:30px;
+            }
+
+        }
+
+        .result {
+            table {
+                thead {
+                    th {
+                        text-overflow:ellipsis;
+
+                        &:first-of-type {
+                         width:40%;
+                        }
+                    }
+                }
+
+                tr {
+                    td:first-child {
+                        text-overflow:ellipsis;
+                    }
+                }
+            }
+        }
+
+        .content-page {
+
+            .level-2 {
+                p {
+                    text-align:left !important;
+                }
+            }
+
+            h2 {
+                font-size:1.3rem;
+            }
+
+            h3 {
+                font-size:1.2rem;
+            }
+
+            h4 {
+                font-size:1.1rem;
+            }
+
+            h5 {
+                font-size:1rem;
+            }
+
+            code {
+                padding:0px;
+                margin-bottom:20px;
+
+                pre {
+                    max-width:100%;
+                    padding:10px;
+                    font-size:.7rem;
+                }
+            }
+
+            .col {
+                width:100%;
+                padding:0px;
+                display:block;
+                text-align:left !important;
+
+                * {
+                    text-align:left;
+                }
+            }
+
+        }
+
+    }
+}

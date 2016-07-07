@@ -1,0 +1,122 @@
+@media all and (max-width: 1080px) {
+  /* line 4, ../../sass/parts/small-screen.scss */
+  nav ul {
+    margin-left: 0px;
+  }
+
+  /* line 9, ../../sass/parts/small-screen.scss */
+  section {
+    padding: 50px 0px;
+  }
+  /* line 13, ../../sass/parts/small-screen.scss */
+  section.header-wrapper h2 {
+    line-height: 1.5;
+  }
+  /* line 18, ../../sass/parts/small-screen.scss */
+  section .text-block {
+    display: none;
+  }
+  /* line 22, ../../sass/parts/small-screen.scss */
+  section.content {
+    width: 90%;
+  }
+  /* line 28, ../../sass/parts/small-screen.scss */
+  section #poc-form .form-content-block > * {
+    position: relative;
+    width: 100%;
+    display: block;
+  }
+  /* line 29, ../../sass/parts/small-screen.scss */
+  section #poc-form .form-content-block > *:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  /* line 38, ../../sass/parts/small-screen.scss */
+  section #poc-form .form-content-block .form-block-right {
+    position: relative;
+    top: 0px;
+  }
+  /* line 42, ../../sass/parts/small-screen.scss */
+  section #poc-form .form-content-block .form-block-right #inputAlgorithms_field {
+    margin-bottom: 20px;
+  }
+  /* line 46, ../../sass/parts/small-screen.scss */
+  section #poc-form .form-content-block .form-block-right #form-submit {
+    position: relative;
+    padding: 30px;
+    bottom: auto;
+  }
+  /* line 58, ../../sass/parts/small-screen.scss */
+  section #twitter-form .suggestions li {
+    display: block;
+    margin-right: 0px;
+  }
+  /* line 64, ../../sass/parts/small-screen.scss */
+  section #twitter-form #username_field {
+    width: 100%;
+    white-space: nowrap;
+    margin-bottom: 10px;
+  }
+  /* line 68, ../../sass/parts/small-screen.scss */
+  section #twitter-form #username_field > * {
+    width: 50%;
+  }
+  /* line 73, ../../sass/parts/small-screen.scss */
+  section #twitter-form #twitter-form-submit {
+    width: 100%;
+    padding: 30px;
+  }
+  /* line 83, ../../sass/parts/small-screen.scss */
+  section .result table thead th {
+    text-overflow: ellipsis;
+  }
+  /* line 86, ../../sass/parts/small-screen.scss */
+  section .result table thead th:first-of-type {
+    width: 40%;
+  }
+  /* line 93, ../../sass/parts/small-screen.scss */
+  section .result table tr td:first-child {
+    text-overflow: ellipsis;
+  }
+  /* line 103, ../../sass/parts/small-screen.scss */
+  section .content-page .level-2 p {
+    text-align: left !important;
+  }
+  /* line 108, ../../sass/parts/small-screen.scss */
+  section .content-page h2 {
+    font-size: 1.3rem;
+  }
+  /* line 112, ../../sass/parts/small-screen.scss */
+  section .content-page h3 {
+    font-size: 1.2rem;
+  }
+  /* line 116, ../../sass/parts/small-screen.scss */
+  section .content-page h4 {
+    font-size: 1.1rem;
+  }
+  /* line 120, ../../sass/parts/small-screen.scss */
+  section .content-page h5 {
+    font-size: 1rem;
+  }
+  /* line 124, ../../sass/parts/small-screen.scss */
+  section .content-page code {
+    padding: 0px;
+    margin-bottom: 20px;
+  }
+  /* line 128, ../../sass/parts/small-screen.scss */
+  section .content-page code pre {
+    max-width: 100%;
+    padding: 10px;
+    font-size: .7rem;
+  }
+  /* line 135, ../../sass/parts/small-screen.scss */
+  section .content-page .col {
+    width: 100%;
+    padding: 0px;
+    display: block;
+    text-align: left !important;
+  }
+  /* line 141, ../../sass/parts/small-screen.scss */
+  section .content-page .col * {
+    text-align: left;
+  }
+}
