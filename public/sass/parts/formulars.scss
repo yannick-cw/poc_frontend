@@ -156,17 +156,43 @@ form input[type="submit"]:hover {
 
 #twitter-form #username_field {
     width: calc(100% - 301px);
+    min-width:200px;
 }
 
 #twitter-form #username_field dt{
     margin-bottom:0px;
-    width:120px;
+    width:140px;
 }
 
 #twitter-form #username_field dd {
-    width: calc(100% - 131px);
+    width: calc(100% - 148px);
 }
 
 #twitter-form #username {
     width:100%;
+}
+
+#twitter-form {
+
+    p {
+        margin-bottom:10px;
+        font-weight:bold;
+    }
+
+    .suggestions {
+        list-style:none;
+        font-size:0px;
+        margin:0px;
+        margin-bottom:10px;
+
+        li {
+            color:#000;
+            padding:10px;
+            margin-right:10px;
+            margin-bottom:10px;
+            display:inline-block;
+            cursor:pointer;
+            background-color:#fff;
+        }
+    }
 }

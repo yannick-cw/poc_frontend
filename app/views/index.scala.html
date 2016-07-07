@@ -49,7 +49,26 @@
 
 <div class="form-content-block">
 
-    @helper.inputText(viewData.twitterForm("username"), '_label -> "Twitter user", 'placeholder -> "twitter username")
+    <p>Suggestions</p>
+
+    <ul class="suggestions">
+        <li>hillaryclinton</li>
+        <li>barackobama</li>
+        <li>realdonaldtrump</li>
+        <li>berniesanders</li>
+        <li>sarahpalinusa</li>
+        <li>democrats</li>
+        <li>tppatriots</li>
+    </ul>
+
+
+    @helper.inputText(viewData.twitterForm("username"), '_label -> "Twitter user @", 'placeholder -> "twitter username")
+
+    <script type="text/javascript">
+    $('.suggestions li').click(function(){
+        $('input#username').val($(this).text());
+    });
+    </script>
 
     <input type="submit" id="twitter-form-submit" value="Classify twitter user"/>
 </div>
@@ -142,8 +161,8 @@
                       }
                   } else {
                       var percentages = {
-                        dem : Math.round(data.dem / overall * 10000) / 100,
-                        rep : 100 - Math.round(data.dem / overall * 10000) / 100
+                        dem : (Math.round(data.dem / overall * 10000) / 100).toFixed(2),
+                        rep : (100 - Math.round(data.dem / overall * 10000) / 100).toFixed(2)
                       }
                     }
 
@@ -157,7 +176,7 @@
 
                         $(row).append('<td>' + algorithmName + '</td>');
                         $(row).append('<td><div class="democrats" data-percentage=' + percentages.dem + '><span></span></div></td>');
-                        $(row).append('<td><div class="republicans" data-percentage=' + percentages.rep + '><span></span></div></td>');
+                        $(row).append('<td><div class="republicans" data-percentage=' + percentages.rep  + '><span></span></div></td>');
                         $(resultWrap).append(row);
 
                     } else {
