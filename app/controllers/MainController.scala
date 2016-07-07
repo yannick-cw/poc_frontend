@@ -6,10 +6,12 @@ import akka.stream.StreamTcpException
 import app.Config
 import models.HttpRequestModel.ClassifyResult
 import models.{FormValidation, HttpRequestModel, ValidatorModel}
+import play.api.Logger
 import play.api.mvc._
 import play.api.data.Form
 import play.api.libs.json.Json
 import protocols.JsonSupport
+
 import scala.concurrent.ExecutionContext.Implicits.global
 import spray.json._
 
@@ -71,6 +73,7 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                 val response = HttpRequestModel.request(userData)
                 response.map { result =>
                     Ok(Json.toJson(result.map { r =>
+                      Logger.debug(s"Classified single request with ${r.algorithm}, dem: ${r.dem}, rep: ${r.rep}")
                         (r.algorithm, Map("dem" -> r.dem, "rep" -> r.rep))
                     }.toMap ))
                 }.recover{
@@ -103,6 +106,7 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
 
                 val response = HttpRequestModel.requestTwitter(userData)
                 response.map { result =>
+                    Logger.debug(s"Classified twitter request with ${result.algorithm}, dem: ${result.dem}, rep: ${result.rep}")
                     Ok(Json.toJson(Map(
                         ("twitter", Map("dem" -> result.dem, "rep" -> result.rep))
                     )))
