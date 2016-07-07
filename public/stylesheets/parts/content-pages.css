@@ -1,158 +1,111 @@
-/* line 2, ../../sass/parts/content-pages.scss */
-.content-page * {
-  color: #000;
-}
-/* line 6, ../../sass/parts/content-pages.scss */
-.content-page h2, .content-page h3, .content-page p, .content-page a {
-  letter-spacing: .12em;
-}
-/* line 10, ../../sass/parts/content-pages.scss */
-.content-page h2 {
-  text-align: center;
-  font-size: 2.8rem;
-  padding: 0px 20px 70px 20px;
-  margin: 0px;
-}
-/* line 17, ../../sass/parts/content-pages.scss */
-.content-page h2, .content-page h3 {
-  font-family: 'Caudex';
-  text-transform: uppercase;
-  line-height: 1;
-}
-/* line 24, ../../sass/parts/content-pages.scss */
-.content-page h2 a, .content-page h3 a, .content-page h4 a {
-  font-size: 1em;
-}
-/* line 30, ../../sass/parts/content-pages.scss */
-.content-page h4 {
-  padding-top: 10px;
-}
-/* line 34, ../../sass/parts/content-pages.scss */
-.content-page section {
-  padding: 0px;
-  font-size: 0px;
-}
-/* line 38, ../../sass/parts/content-pages.scss */
-.content-page section.level {
-  padding: 30px 0px;
-}
-/* line 43, ../../sass/parts/content-pages.scss */
-.content-page section.level.level-1 h3 {
-  border-bottom: 1px solid #000;
-  font-size: 1.8rem;
-  padding-bottom: 10px;
-}
-/* line 49, ../../sass/parts/content-pages.scss */
-.content-page section.level.level-1 .level-2 {
-  padding: 40px 0px;
-}
-/* line 52, ../../sass/parts/content-pages.scss */
-.content-page section.level.level-1 .level-2 p {
-  line-height: 1.5;
-  margin-bottom: 20px;
-  text-align: justify;
-}
-/* line 58, ../../sass/parts/content-pages.scss */
-.content-page section.level.level-1 .level-2 > *:last-child {
-  margin-bottom: 0px;
-}
-/* line 68, ../../sass/parts/content-pages.scss */
-.content-page section code {
-  position: relative;
-  display: block;
-  text-align: center;
-  padding: 50px;
-  padding-top: 40px;
-}
-/* line 75, ../../sass/parts/content-pages.scss */
-.content-page section code + code {
-  padding-top: 0px;
-}
-/* line 79, ../../sass/parts/content-pages.scss */
-.content-page section code * {
-  font-family: 'Inconsolata';
-  font-size: 1.1em;
-}
-/* line 84, ../../sass/parts/content-pages.scss */
-.content-page section code pre {
-  display: inline-block;
-  text-align: left;
-  line-height: 1.8;
-  letter-spacing: .15em;
-  padding: 15px 40px;
-  background: #e0e0e0;
-  width: auto;
-  box-shadow: 0px 1px 1px 0px #b4b4b4;
-}
-/* line 97, ../../sass/parts/content-pages.scss */
-.content-page section .col {
-  display: inline-block;
-  width: 50%;
-  padding: 70px;
-}
-/* line 102, ../../sass/parts/content-pages.scss */
-.content-page section .col h4 {
-  display: inline-block;
-  border-bottom: 1px solid #000;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 10px;
-}
-/* line 110, ../../sass/parts/content-pages.scss */
-.content-page section .col > ul, .content-page section .col ol {
-  list-style: none;
-}
-/* line 114, ../../sass/parts/content-pages.scss */
-.content-page section .col.col-left {
-  text-align: right;
-}
-/* line 120, ../../sass/parts/content-pages.scss */
-.content-page section .icon-merge {
-  transform: rotateX(180deg);
-  position: relative;
-  display: block;
-  left: calc(50% - 60px);
-  width: 150px;
-  margin-bottom: 70px;
-}
-/* line 129, ../../sass/parts/content-pages.scss */
-.content-page section .structured-info {
-  text-align: center !important;
-}
-/* line 132, ../../sass/parts/content-pages.scss */
-.content-page section .structured-info strong {
-  display: block;
-  font-weight: 900;
-  font-size: 1.3em;
-  line-height: 3;
-}
-/* line 140, ../../sass/parts/content-pages.scss */
-.content-page section figure {
-  margin: 50px 0px;
-  text-align: center;
-}
-/* line 144, ../../sass/parts/content-pages.scss */
-.content-page section figure img {
-  padding: 50px;
-  background-color: #fff;
-  box-shadow: 0px 1px 3px 0px #999;
-}
-/* line 150, ../../sass/parts/content-pages.scss */
-.content-page section figure figcaption {
-  text-align: center;
-  padding: 10px;
-}
-/* line 156, ../../sass/parts/content-pages.scss */
-.content-page section .full-width {
-  width: 100%;
-}
-/* line 160, ../../sass/parts/content-pages.scss */
-.content-page section .formular {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 60px;
-  margin-bottom: 60px;
-  width: 40%;
-  min-width: 280px;
-}
+/*
+Error: Undefined variable: "$theme-blue-light".
+        on line 174 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/content-pages.scss
+
+169: 
+170:         table {
+171:             margin-bottom:40px;
+172:             
+173:             thead {
+174:                 border-bottom:10px solid $theme-blue-light;
+175:             }
+176: 
+177:             #resultRows {
+178: 
+179:                 tr {
+
+Backtrace:
+C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/content-pages.scss:174
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/variable.rb:49:in `_perform'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/list_literal.rb:63:in `_perform'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/list_literal.rb:62:in `_perform'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:394:in `visit_prop'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:430:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:115:in `with_frame'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/stack.rb:79:in `with_base'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:158:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+org/jruby/RubyArray.java:2412:in `map'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:52:in `visit_children'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:167:in `visit_children'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/base.rb:36:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:157:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:8:in `visit'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/root_node.rb:36:in `css_tree'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/root_node.rb:20:in `render'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/engine.rb:268:in `render'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:17:in `render'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:29:in `with_import_scope'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/compass-import-once-1.0.5/lib/compass/import-once/engine.rb:16:in `render'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
+org/jruby/RubyMethod.java:128:in `call'
+file:/C:/Users/Simon/Desktop/compass.app/compass-app.jar!/hook/compass_patch.rb:108:in `update_stylesheet'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/plugin/compiler.rb:215:in `update_stylesheets'
+org/jruby/RubyArray.java:1613:in `each'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/plugin/compiler.rb:470:in `on_file_changed'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/plugin/compiler.rb:328:in `watch'
+org/jruby/RubyProc.java:271:in `call'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/jruby/listen-1.3.1-patched/lib/listen/listener.rb:252:in `on_change'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/jruby/listen-1.3.1-patched/lib/listen/listener.rb:290:in `initialize_adapter'
+org/jruby/RubyProc.java:271:in `call'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/jruby/listen-1.3.1-patched/lib/listen/adapters/polling.rb:48:in `poll_changed_directories'
+C:/Users/Simon/Desktop/compass.app/lib/ruby/jruby/listen-1.3.1-patched/lib/listen/adapter.rb:297:in `start_poller'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Error: Undefined variable: \"$theme-blue-light\".\A         on line 174 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/content-pages.scss\A \A 169: \A 170:         table {\A 171:             margin-bottom:40px;\A 172:             \A 173:             thead {\A 174:                 border-bottom:10px solid $theme-blue-light;\A 175:             }\A 176: \A 177:             #resultRows {\A 178: \A 179:                 tr {"; }

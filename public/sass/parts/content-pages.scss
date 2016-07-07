@@ -167,5 +167,43 @@
             min-width:280px;
         }
 
+        table {
+            margin-bottom:40px;
+            
+            thead {
+                border-bottom:10px solid $theme-blue-light;
+            }
+
+            #resultRows {
+
+                tr {
+                    border-bottom:10px solid transparent;
+                }
+
+                tr {
+                    td:first-child {
+                        border-right:2px solid transparent;
+                    }
+                }
+
+                td:nth-child(2) {
+                    div {
+                        left:0px;
+                        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#9393d8+0,8181e2+60 */
+                        background: #9393d8; /* Old browsers */
+                        background: -moz-linear-gradient(top,  #9393d8 0%, #8181e2 60%); /* FF3.6-15 */
+                        background: -webkit-linear-gradient(top,  #9393d8 0%,#8181e2 60%); /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to bottom,  #9393d8 0%,#8181e2 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9393d8', endColorstr='#8181e2',GradientType=0 ); /* IE6-9 */
+
+                        span {
+                            top:33%;
+                            right:10px;
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }

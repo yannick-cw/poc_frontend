@@ -438,14 +438,14 @@ override def classify(cleanedDoc: CleanedDoc): Seq[Double] = {
                 We randomly distributed this data to 95% train and 5% test data.
                 If not stated differently our own sanitization was used.</p>
 
-            <table>
+            <table class="percentage-table">
                 <thead>
                 <tr>
                     <th>Algorithm</th>
                     <th>% correct classified</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="resultRows">
                 <tr>
                     <td>naive bayes <strong>own implementation</strong></td>
                     <td>79,88%</td>
@@ -498,6 +498,64 @@ override def classify(cleanedDoc: CleanedDoc): Seq[Double] = {
                 </tr>
                 </tbody>
             </table>
+
+            <script type="text/javascript">
+                var percentageTable = $('.percentage-table');
+
+                $.each(percentageTable, function() {
+                    var percentageCells = $(this).find('tbody tr td:nth-child(2)');
+
+                    $.each(percentageCells, function() {
+                        var percentageValue = $(this).text().replace(",",".");
+                        $(this).html('<div style="width:' + percentageValue + ';"><span>' + percentageValue + '</span></div>');
+
+                    });
+                });
+
+            </script>
+
+            <h4>Conclusion and algorithms used</h4>
+
+
+            <p>The most important observation from these results was, that our own naive bayes implementation was the best and fastest by far. This has probably to do with the fact, that we could make use of parallel execution and fit the algorithm exactly to our needs.  </p>
+
+            <p>One more interesting result was, that the model building process for support vector machines, j48 tree and SVM for text data took more than 12 hours. So we decided that they are not practically for our approach, because we want faster startup times. </p>
+
+            <p>
+                In the end performance wise and by looking at the classification results we chose to use our naive bayes implementation, the bayes net, the k-nearest neighbors and the bayes multinomial for text data algorithms in our running project.<br>
+                Thereby we provide some diversity in results and the user decides which algorithm to trust.
+            </p>
+
+            <p>Altogether we are really happy with almost 80% correct classified data, the first tries ended in the 60% area and we tweaked a lot of parameters to get this 20% increase.</p>
+
+        </section>
+    </section>
+
+    <section class="level level-1">
+        <h3>Future Ideas</h3>
+        <section class="level level-2">
+            <h4>Add more Input possibilities</h4>
+
+            <p>It would be very interesting to also include Facebook posts or texts from different social media sited. Furthermore twitter and facebook data could also be used to train the models.</p>
+
+            <h4>Improve classification through user response</h4>
+
+            <p>
+                Another improvement would be to have a back channel from the user. The user could say if the classification seems to be correct and the model could be continually trained to create better results.
+            </p>
+
+            <h4>Run multiple algorithms in sequence to improve results</h4>
+
+            <p>
+                One way to push the correct classified percentage over 80% could be to include multiple algorithms in a single classification.
+                Unfortunately there was no time left to implement this feature.
+            </p>
+
+            <h4>Allow generic classes to classify to</h4>
+
+            <p>
+                In the long run we could imagine to allow generic classes, not only democrats or republicans. There would only be small changes necessary to achieve that, because most of the code is already build to allow any classes.
+            </p>
         </section>
     </section>
 

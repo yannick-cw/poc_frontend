@@ -1,0 +1,39 @@
+table {
+    text-align:left;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table .headline {
+    text-align:center;
+    font-size:2.4rem;
+    background:#f7f7ff;
+    color:#000;
+    font-family:'Caudex';
+    padding:40px;
+}
+
+table tr > * {
+    padding: 20px;
+}
+
+table thead {
+    background-color:$theme-blue;
+    * {
+        color:#fff !important;
+    }
+}
+
+table thead th {
+    text-align:center;
+}
+
+table tbody tr > * {
+    background-color:#eee;
+    transition:.2s;
+}
+
+table tbody tr:hover > * {
+    background-color:#e2e2e2;
+}

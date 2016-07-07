@@ -1,20 +1,21 @@
 /*
 Error: Undefined variable: "$theme-blue".
-        on line 5 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/formulars.scss
+        on line 22 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/tables.scss
 
-1: form {
-2:     width:100%;
-3:     font-size:0px;
-4:     margin-bottom:20px;
-5:     background-color:$theme-blue;
-6:     padding:10px;
-7:     padding-bottom:0px;
-8:     color:#fff;
-9:     background-image:url('../images/closed.png');
-10:     background-position:right 14px top 20px;
+17: table tr > * {
+18:     padding: 20px;
+19: }
+20: 
+21: table thead {
+22:     background-color:$theme-blue;
+23:     * {
+24:         color:#fff !important;
+25:     }
+26: }
+27: 
 
 Backtrace:
-C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/formulars.scss:5
+C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/tables.scss:22
 C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/variable.rb:49:in `_perform'
 C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/script/tree/node.rb:50:in `perform'
 C:/Users/Simon/Desktop/compass.app/lib/ruby/compass_1.0/sass-3.4.13/lib/sass/tree/visitors/perform.rb:394:in `visit_prop'
@@ -79,4 +80,4 @@ org/jruby/RubyKernel.java:1071:in `require'
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$theme-blue\".\A         on line 5 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/formulars.scss\A \A 1: form {\A 2:     width:100%;\A 3:     font-size:0px;\A 4:     margin-bottom:20px;\A 5:     background-color:$theme-blue;\A 6:     padding:10px;\A 7:     padding-bottom:0px;\A 8:     color:#fff;\A 9:     background-image:url('../images/closed.png');\A 10:     background-position:right 14px top 20px;"; }
+  content: "Error: Undefined variable: \"$theme-blue\".\A         on line 22 of C:/Users/Simon/Desktop/DataScience/poc_frontend/public/sass/parts/tables.scss\A \A 17: table tr > * {\A 18:     padding: 20px;\A 19: }\A 20: \A 21: table thead {\A 22:     background-color:$theme-blue;\A 23:     * {\A 24:         color:#fff !important;\A 25:     }\A 26: }\A 27: "; }
