@@ -78,8 +78,7 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                     }.toMap ))
                 }.recover{
                     case tcpError:akka.stream.StreamTcpException => Ok(Json.toJson(Map(
-                        //("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
-                        ("naive_bayes", Map("dem" -> 0.2529649388849983, "rep" -> 0.7470350611150018))
+                        ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
                     )))
                 }
             }
@@ -113,8 +112,7 @@ class MainController @Inject() extends Controller with FormValidation with JsonS
                 }.recover{
                     case tcpError:akka.stream.StreamTcpException => {
                         Ok(Json.toJson(Map(
-                            //("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
-                            ("twitter", Map("rep" -> 0.2529649388849983, "dem" -> 0.7470350611150018))
+                            ("ERROR", Map("dem" -> 0.0, "rep" -> 0.0))
                         )))
                     }
                 }
