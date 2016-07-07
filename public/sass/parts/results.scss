@@ -1,0 +1,118 @@
+/*************************************************************************/
+/****************************** result ***********************************/
+/*************************************************************************/
+
+.result {
+    padding-top:0px;
+}
+
+.result h2 {
+    line-height: 8rem;
+    color: #000;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.result table {
+    text-align:left;
+    table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.result table .headline {
+    text-align:center;
+    font-size:2.4rem;
+    background:#f7f7ff;
+    color:#000;
+    font-family:'Caudex';
+    padding:40px;
+}
+
+.result table tr > * {
+    padding: 20px;
+}
+
+.result table thead {
+    background-color:$theme-blue;
+    color:#fff;
+}
+
+.result table thead th {
+    text-align:center;
+}
+
+.result table thead th:first-of-type {
+    width:230px;
+}
+
+.result table tbody tr > * {
+    background-color:#eee;
+    transition:.2s;
+}
+
+.result table tbody tr:hover > * {
+    background-color:#e2e2e2;
+}
+
+#resultRows td {
+    position:relative;
+    width:auto;
+    overflow:hidden;
+}
+
+#resultRows td:first-child {
+    width:230px;
+    border-right:2px solid #fff;
+}
+
+#resultRows td p {
+    position:relative;
+}
+
+
+#resultRows td > div {
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    overflow:visible;
+    min-width:2px;
+}
+
+#resultRows td > .democrats {
+    right:0px;
+   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#56b5dd+2,34aae0+100 */
+   background: #56b5dd; /* Old browsers */
+   background: -moz-linear-gradient(top,  #56b5dd 2%, #34aae0 100%); /* FF3.6-15 */
+   background: -webkit-linear-gradient(top,  #56b5dd 2%,#34aae0 100%); /* Chrome10-25,Safari5.1-6 */
+   background: linear-gradient(to bottom,  #56b5dd 2%,#34aae0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#56b5dd', endColorstr='#34aae0',GradientType=0 ); /* IE6-9 */
+}
+
+#resultRows td > .republicans {
+    left:0px;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ea1c24+0,cf181f+100 */
+    background: #ea1c24; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ea1c24 0%, #cf181f 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ea1c24 0%,#cf181f 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ea1c24 0%,#cf181f 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea1c24', endColorstr='#cf181f',GradientType=0 ); /* IE6-9 */
+    text-align:right;
+}
+
+#resultRows td > div span {
+    display:block;
+    color:#fff;
+    font-wight:bold;
+    position:absolute;
+    font-size:.7rem;
+}
+
+#resultRows td > .republicans span {
+    right:5px;
+    top:32%;
+}
+#resultRows td > .democrats span {
+    left:5px;
+    top:32%;
+}

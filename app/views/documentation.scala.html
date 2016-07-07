@@ -4,7 +4,504 @@
 
 @main(routePath) {
 
-    <p>Some documentation here...</p>
+<article class="content-page">
+    <h2>Documentation</h2>
+
+    <section class="level level-1">
+        <h3>The Political Opinion Classifier</h3>
+        <section class="level level-2">
+            <p>This is a project by Yannick Gladow and Simon Wanner.<br/>The goal is to correctly classify text data to
+                political opinion based on data from reddit.</p>
+        </section>
+    </section>
+
+    <section class="level level-1">
+        <h3>The Idea</h3>
+        <section class="level level-2">
+            <p>How cool would it be to just type in the twitter username <i>berniesanders</i> into a textfield and get
+                this
+            </p>
+            <code><pre>
+//actual results from poc
+{
+    "dem": 0.7148484082739541,
+    "rep": 0.28515159172604543
+}
+</pre>
+            </code>
+
+            <p>or this <i>tppatriots</i> (teaparty patriots)</p>
+
+            <code><pre>
+//actual results from poc
+{
+    "dem": 0.3883405523132041,
+    "rep": 0.6116594476867955
+}
+</pre>
+            </code>
+
+            <p>Well thats what we thought.
+            <p>
+
+            <p>
+                Find out if your new date is secretly a radical Trump supporter? Or your boss has the same policial
+                views as you?
+            </p>
+
+            <p>What if you could predict the political opinion of a person automatically by just looking at their posts
+                on social media?
+            </p>
+
+            <p>This was the question, which lead to our idea, to classify text to different political groups. </p>
+
+            <p>So we created a website where you can<br/>
+                1. put in any text and classify it to democrats or republican<br/>
+                2. link to a twitter account and classify this account to democrats or republicans
+            </p>
+
+            <p>We considered doing it for the German political spectrum, but decided to try to differentiate between
+                republicans and democrats, for the simple reason, that there are huge amounts of data available for US
+                politics.<br/>
+                As source for data we thought about using twitter, but decided to go for <a target="_blank"
+                                                                                            href="http://reddit.com">reddit</a>,
+                because it is easier to find labeled training data there.
+            </p>
+
+        </section>
+    </section>
+
+    <section class="level level-1">
+        <h3>The Data</h3>
+        <section class="level level-2">
+            <p>Reddit is a huge datasource for labeled data, there are millions of posts to almost every existing topic.
+                And these posts are upvoted or downvoted by other users of the site.
+                Thereby labeled data, rated by acceptance, is created by the community.
+            </p>
+            <p>
+                Although maybe not 100% accurate, we considered upvoted posts in subreddits of one political opinion to
+                correspond to that political opinion.<br>
+                For our project we extracted posts from the following subreddits.
+            </p>
+
+            <div class="col col-left">
+                <h4>Democratic Subreddits</h4>
+                <ul>
+                    <li><a target="_blank" href="http://reddit.com/r/democrats">democrats</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/liberal">liberal</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/obama">obama</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/hillaryclinton">hillaryclinton</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/SandersForPresident">SandersForPresident</a></li>
+                </ul>
+            </div><div class="col col-right">
+                <h4>Republican Subreddits</h4>
+                <ul>
+                    <li><a target="_blank" href="http://reddit.com/r/republican">republican</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/republicans">republicans</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/conservative">conservative</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/The_Donald">The_Donald</a></li>
+                    <li><a target="_blank" href="http://reddit.com/r/AskTrumpSupporters">AskTrumpSupporters</a></li>
+                </ul>
+            </div>
+
+            <img class="icon icon-merge" src="@routes.Assets.versioned("images/merge.svg")" />
+
+            <p class="structured-info">From these two groups we gathered over<strong>7GByte</strong> of raw json files
+                containing roughly <strong>4.000.000 distinct text documents</strong> labeled with upvotes.</p>
+        </section>
+    </section>
+
+    <section class="level level-1">
+        <h3>The Software Architecture</h3>
+        <section class="level level-2">
+            <p>
+                We wanted to implement this project in a highly modular microservice fashion.<br>
+                As language we decided to go with
+                <a target="_blank" href="http://www.scala-lang.org/">scala</a>, because for us it seemed
+                to be the optimal fit for working with BigData and Machine Learning.
+                Furthermore we tried to keep away from any blocking operations and comply to the
+                <a target="_blank" href="http://www.reactivemanifesto.org/">reactive manifesto.</a>
+            </p>
+
+            <p>
+                First we extracted the json data from reddit with the help of a python
+                <a target="_blank" href="https://github.com/peoplma/subredditarchive">script</a>.
+                After that the data is processed through multiple microservices, each communicating via a REST API.
+            </p>
+
+            <h4><a href="https://github.com/yannick-cw/poc-importer" target="_blank">The Importer</a></h4>
+
+            <p>
+                The importer reads in the json files from a directory and then processes them in a streaming fashion
+                with
+                <a target="_blank" href="http://doc.akka.io/docs/akka/2.4.7/scala/stream/index.html">
+                    Akka Streams
+                </a>.
+                First each post from the parent post is is deserialized into an internal object representation, than it
+                is sanitized, grouped into bulks and finally stored to an
+                <a target="_blank" href="https://www.elastic.co/products/elasticsearch">
+                    elasticsearch
+                </a>
+                database running in a docker container.
+            </p>
+
+            <h4><a target="_blank" href="https://github.com/yannick-cw/poc_cleaner">The Cleaner</a></h4>
+
+            <code><pre>
+endpoint: /clean
+</pre></code>
+
+            <code><pre>
+//input
+{ "text" : "text to clean" }
+
+//output
+{ "cleanedText" : "after cleaning "}
+</pre></code>
+
+
+            <p>
+                The cleaner accepts http requests containing a text and gives back a text without stopwords and all words are stemmed with an implementation of the
+                <a target="_blank" href="https://de.wikipedia.org/wiki/Porter-Stemmer-Algorithmus">
+                    Porter-Stemmer-Algorithm</a>.
+                Furthermore relics from URL encoding are removed.
+            </p>
+
+            <h4><a target="_blank" href="https://github.com/yannick-cw/poc_analyzer">The Analyzer</a></h4>
+
+            <code><pre>
+endpoint: /classify
+</pre></code>
+
+            <code><pre>
+//input
+{
+    "algorithm" : "algorithm to use",
+    "text" : "text to classify"
+}
+
+//output
+//with probabilities for rep and dem
+{
+    "algorithm" : "algorithm used",
+    "rep" : 0.5,
+    "dem" : 0.5
+}
+</pre></code>
+
+
+            <p>The Analyzer is the heart of the whole project.</p>
+            <p>
+                First it reads in the labeled texts from the
+                <a target="_blank" href="https://www.elastic.co/products/elasticsearch">elasticsearch</a>
+                database. After that multiple models are built with the classification algorithms that we chose. When the models are ready, it accepts http requests containing an algorithm name and a text and tries to classify the given text.
+                Therefore the input text is first send to the Cleaner mircorservice and then classified by the selected algorithm.
+            </p>
+
+            <p>The seconds mode of operation is the validation phase. There each model is build and tested against a specified percentage of the input data. The input data is randomly distributed into test and train data.</p>
+
+            <p>The internal structure is based on the <a target="_blank" href="http://akka.io/">Akka</a> Actor model.</p>
+
+            <h4><a target="_blank" href="https://github.com/yannick-cw/poc_frontend">The Frontend</a></h4>
+
+            <p>The Frontend is build with the <a target="_blank" href="https://www.playframework.com/">play frameworke</a> and his main job is to send the user requests to the backend and display the results.</p>
+
+            <h4><a target="_blank" href="https://github.com/yannick-cw/poc_twitter_linker">The Twitter linker</a></h4>
+
+            <code><pre>
+endpoint: /classifyUser
+</pre></code>
+
+            <code><pre>
+//input
+{ "username" : "the twitter username" }
+</pre></code>
+
+            <p>
+                The twitter linker provides a service to analyze twitter users's political opinion based on their tweets.The twitter linker gives the opportunity to the user to analyze twitter users's political opinion. In the frontend the username can be specified and then all recent posts of the twitter account are analyzed and the resulting political opinion is displayed.
+            </p>
+
+            <p>
+                Therefore the twitter linker has to crawl all recent posts of the input user. This is
+                implemented using the <a target="_blank" href="https://github.com/DanielaSfregola/twitter4s">twitter4s</a> library.
+            </p>
+
+            <h4>More Technologies used</h4>
+
+
+            <p>
+                To make it easy to deploy this everywhere, each service can be run in a
+                <a target="_blank" href="https://www.docker.com/">
+                    docker
+                </a>
+                container.
+            </p>
+            <p>
+                The whole stack is running on an
+                    <a target="_blank" href="https://aws.amazon.com">AWS</a>
+                instance with 16GByte of RAM and 8 cores.
+            </p>
+            <p>
+                For classification the machine learning library
+                <a target="_blank" href="http://www.cs.waikato.ac.nz/ml/weka/">weka</a>
+                is used.
+            </p>
+
+            <figure>
+                <img class="full-width" src="@routes.Assets.versioned("images/pocStructure.png")" title="POC - Structure" />
+                <figcaption>The POC struture</figcaption>
+            </figure>
+
+        </section>
+    </section>
+
+
+    <section class="level level-1">
+        <h3>The Algorithms considered</h3>
+        <section class="level level-2">
+            <h4>The Featurevector</h4>
+            <p>
+                We tried different approaches to build a feature vector from the text to classify.<br>
+                One approach was to build a feature vector containing of:
+            </p>
+
+            <ul>
+                <li>average spelling errors per word</li>
+                <li>average text length</li>
+                <li>average sentence length</li>
+                <li>average distinct words</li>
+                <li>average uppercase letters used</li>
+                <li>average word length</li>
+            </ul>
+
+            <p>
+                From this approach we learned, that it does not work at all. All these features, combined or individually, were distributed very even between the political parties.
+            </p>
+
+            <p>
+                So we decided to classify with the
+                <a target="_blank" href="https://en.wikipedia.org/wiki/Bag-of-words_model">bag of words approach</a>.<br>
+                Furthermore we also tried to use n-grams but found no improvement in the classification results.
+            </p>
+
+            <p>
+                We considered the following algorithms, because they all seemed to create good results for text classification.
+            </p>
+
+            <h5><a target="_blank" href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes</a></h5>
+
+            <p>
+                Naive bayes algorithms are based on the Bayes theorem and view each attribute from the featurevector as independent.
+                The main idea is, that it calculates the probabilities of the input text for being in each class.<br>
+                Technical it looks like this:
+            </p>
+
+            <img class="formular" src="@routes.Assets.versioned("images/naive_bayes.svg")" />
+
+            <p>
+                Here the probability for input vector x<sub>1</sub>,...,x<sub>n</sub> belonging to class C<sub>k</sub> is calculated.<br>
+                Therefore the overall probability for C<sub>k</sub> is multiplied with the product of each probability for x<sub>i</sub> being in C<sub>k</sub>. In the end the Class with the highest probability is selected.
+            </p>
+
+            <h5><a target="_blank" href="https://en.wikipedia.org/wiki/Bayesian_network">Bayesian network</a></h5>
+
+            <p>The bayesian network builds on the bayes theorem and creates a probabilistic directed acyclic graph.</p>
+
+            <h5><a href="https://en.wikipedia.org/wiki/Naive_Bayes_classifier#Multinomial_naive_Bayes">Multinomial naive Bayes</a></h5>
+
+            <p>We use two different implementations of the multinomial naive bayes.  </p>
+
+            <ol>
+                <li>the normal version <a target="_blank" href="http://weka.sourceforge.net/doc.dev/weka/classifiers/bayes/NaiveBayesMultinomial.html">multinomial</a><br></li>
+                <li>and the version especially for text classification <a target="_blank" href="http://weka.sourceforge.net/doc.dev/weka/classifiers/bayes/NaiveBayesMultinomialText.html">multinomial text</a><br></li>
+            </ol>
+
+            <p>The difference of the used multinomial bayes classifiers to the naive bayes classifier is that it uses a multinomial distribution instead of the normal distribution.</p>
+
+            <h5><a target="_blank" href="https://en.wikipedia.org/wiki/Support_vector_machine">Support vector machine</a></h5>
+
+            <p>
+                Support vector machines try to separate the data points in two classes. Therefore it tries to find the linear function keeping maximal distance to objects of each of the classes.
+            </p>
+
+            <figure>
+                <img src="@routes.Assets.versioned("images/svm.png")" />
+                <figcaption>Kernel machine</figcaption>
+            </figure>
+
+            <p>With the kernel trick the multidimensional feature space is mapped to two dimensions and linear classification is possible.</p>
+
+            <h5><a target="_blank" href="https://en.wikipedia.org/wiki/C4.5_algorithm">J48 tree</a></h5>
+            <p>
+                J48 is an implementation of the C4.5 algorithm, a decision tree.<br>
+                It uses information entropy to split up the feature vector of the training data to create nodes in the tree.
+            </p>
+
+            <h5><a target="_blank" href="https://en.wikipedia.org/wiki/K-nearest_neighbors_algorithm"><i>k</i>-nearest neighbors</a></h5>
+
+            <p>
+                k-nearest neighbors has no model building phase. The whole algorithm is lazy evaluated. Meaning the calculation happens after the training phase, when actual data comes in.<br>
+                The new incoming data point is compared to its k nearest neighbors and then classified, usually according to the majority class of its neighbors.
+            </p>
+
+            <figure>
+                <img src="@routes.Assets.versioned("images/knn.svg")" />
+                <figcaption>knn classification</figcaption>
+            </figure>
+
+            <hr>
+
+            <p>All algorithms used are from the weka library, besides one version of naive bayes,  which we implemented ourselves.</p>
+
+            <h4>Our naive Bayes implementation</h4>
+            <h5>The model building</h5>
+
+            <code><pre>
+class BayesAlgorithm(classes: Class*) {
+    //min times each word has to appear
+    private val minWordAppearance: Int = 0
+
+    //number of docs in class divided by number of all docs
+    private val probabilityPerClass =
+        classes.map(_class =>
+            _class.size.toDouble / classes.flatten.size.toDouble)
+
+    //all distinct words from input texts
+    private val vocabularySize = classes
+        .flatten
+        .flatten
+        .distinct
+        .size
+        .toDouble
+
+    //words in classes dem and rep
+    private val wordsPerClass = classes.map(_.flatten.size)
+
+    //function that maps the words to their count
+    private val getPerWordCount: (Class) => Map[Word, Double] = _class => {
+        _class.flatten
+          .groupBy(identity)
+          .mapValues(_.length.toDouble)
+          .filter(_._2 >= minWordAppearance)
+    }
+
+    //creates maps for rep and dems each containing the count per word
+    private val perClassWordAppearance = classes.map(getPerWordCount)
+
+    //zip the map with the overall size of rep and dems
+    private val zipped = wordsPerClass.zip(perClassWordAppearance)
+}
+</pre></code>
+
+            <h5>The classification</h5>
+            <code><pre>
+override def classify(cleanedDoc: CleanedDoc): Seq[Double] = {
+
+    //create list of words
+    val inputText = cleanedDoc.cleanedText.split(" ")
+    val zipped = wordsPerClass.zip(perClassWordAppearance)
+
+    val classWiseProbabilities = zipped
+        .map { case (totalWordsClass, individualWordCountMap) => inputText
+            //replace each word with the appearance in class
+            //and add balance factor 1
+            .map { word =>
+                (
+                    (individualWordCountMap.getOrElse(word, 0.0) + 1.0) /
+                    (totalWordsClass + vocabularySize)
+                )
+            }
+        }
+
+    classWiseProbabilities
+        //multiply each word probability
+        .map(_.product)
+        //zip with general class probability
+        .zip(probabilityPerClass)
+        //mulitply with general class probability
+        .map { case (wordInClassProbability, generalClasProbability) =>
+            wordInClassProbability * generalClasProbability
+        }
+}
+</pre></code>
+
+        </section>
+    </section>
+
+
+    <section class="level level-1">
+        <h3>The Classification Results</h3>
+        <section class="level level-2">
+            <p>
+                For classification we decided to limit our dataset to posts with more than 20 upvotes. This provided us with the best results since the posts where obviously accepted by their community.<br>
+                This restricted the ~4.000.000 input documents to nearly 400.000 texts.<br>
+                We randomly distributed this data to 95% train and 5% test data.
+                If not stated differently our own sanitization was used.</p>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Algorithm</th>
+                    <th>% correct classified</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>naive bayes <strong>own implementation</strong></td>
+                    <td>79,88%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes multinomial text</td>
+                    <td>79,67%</td>
+                </tr>
+                <tr>
+                    <td>SVM for text data with TF * IDF</td>
+                    <td>78,4%</td>
+                </tr>
+                <tr>
+                    <td>SVW</td>
+                    <td>77,28%</td>
+                </tr>
+                <tr>
+                    <td>J48 Tree</td>
+                    <td>76,53%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes multinomial</td>
+                    <td>74,52%</td>
+                </tr>
+                <tr>
+                    <td>bayes net</td>
+                    <td>74,5%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes with TF * IDF</td>
+                    <td>70,28%</td>
+                </tr>
+                <tr>
+                    <td>k-nearest neighbors</td>
+                    <td>69,76%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes</td>
+                    <td>69,52%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes, <a target="_blank" href="http://snowball.tartarus.org/algorithms/lovins/stemmer.html">lovins
+                        stemmer</a>, <a target="_blank" href="http://weka.sourceforge.net/doc.dev/weka/core/stopwords/Rainbow.html">rainbow
+                        stopwords</a></td>
+                    <td>68,46%</td>
+                </tr>
+                <tr>
+                    <td>naive bayes, no sanitization</td>
+                    <td>52%</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+
+</article>
 
 }
 

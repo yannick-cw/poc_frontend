@@ -1,0 +1,172 @@
+form {
+    width:100%;
+    font-size:0px;
+    margin-bottom:20px;
+    background-color:$theme-blue;
+    padding:10px;
+    padding-bottom:0px;
+    color:#fff;
+    background-image:url('../images/closed.png');
+    background-position:right 14px top 20px;
+    background-repeat:no-repeat;
+}
+
+form.active {
+    background-image:url('../images/open.png');
+        background-position:right 14px top 25px;
+
+}
+
+form legend {
+    padding-top: 10px;
+    padding-bottom:20px;
+    width:100%;
+    display:block;
+    cursor:pointer;
+    background-repeat:no-repeat;
+    background-position:left top;
+    background-image:url('../images/search.png');
+    padding-left:70px;
+}
+
+form.active legend {
+    font-weight:bold;
+}
+
+form .form-content-block {
+    position:relative;
+    padding-top:20px;
+    padding-bottom:10px;
+    border-top:1px solid #fff;
+    font-size:0px;
+}
+
+form dl {
+    vertical-align:top
+}
+
+#inputText_field, #inputAlgorithms_field {
+    display:inline-block;
+}
+
+
+#inputText_field {
+    width:calc(100% - 310px);
+    margin-right:10px;
+}
+
+form dl dt {
+    font-weight:bold;
+    margin-bottom:20px;
+    display:block
+}
+
+form textarea {
+    padding:20px;
+    width:100%;
+    min-height: 300px;
+    resize:vertical;
+    border:none;
+}
+
+.info, dd.error {
+    display:none !important;
+}
+
+#inputText_field dd {
+    line-height:0px;
+}
+
+.form-block-right {
+    width:300px;
+    position:absolute;
+    right:0px;
+    top:20px;
+    bottom:0px;
+}
+
+form .buttonset label {
+    margin-top:-3px;
+}
+
+form .buttonset label:not(:last-of-type)::after {
+    content:"";
+    display:block;
+    height:30px;
+    cursor:default;
+}
+
+form .buttonset input, form .buttonset label, form input[type="submit"]  {
+    cursor:pointer;
+}
+
+form .buttonset input {
+    margin-right:5px;
+}
+
+form input[type="submit"] {
+    display:inline-block;
+    position:absolute;
+    bottom:10px;
+    width:100%;
+    padding:10px 50px;
+    background-color:$theme-blue;
+    border:1px solid #fff !important;
+    color:#fff;
+    border:none;
+}
+
+form input[type="submit"]:hover {
+    background-color:#fff;
+    color:$theme-blue;
+}
+
+
+/*************************************************************************/
+/************************** twitter form ********************************/
+/*************************************************************************/
+
+#twitter-form legend {
+    background-image:url('../images/twitter.png');
+    background-position:left top 2px;
+}
+
+
+#twitter-form #username_field {
+    font-size:0px;
+}
+
+#twitter-form #username_field , #twitter-form #username_field > * {
+    display:inline-block;
+}
+
+#twitter-form #username {
+    padding: 11px;
+    border: none;
+    margin-top: 3px;
+}
+
+#twitter-form #twitter-form-submit {
+    width:300px;
+    right:0px;
+    position:relative;
+    vertical-align:bottom;
+    bottom:0px;
+}
+
+#twitter-form #username_field {
+    width: calc(100% - 301px);
+}
+
+#twitter-form #username_field dt{
+    margin-bottom:0px;
+    width:120px;
+}
+
+#twitter-form #username_field dd {
+    width: calc(100% - 131px);
+}
+
+#twitter-form #username {
+    width:100%;
+}

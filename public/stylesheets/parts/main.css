@@ -1,0 +1,111 @@
+/* line 4, ../../sass/parts/main.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 0.03rem;
+}
+
+/* line 15, ../../sass/parts/main.scss */
+html, body {
+  background-color: #f7f7ff;
+}
+
+/* line 19, ../../sass/parts/main.scss */
+h1, h2 {
+  font-family: 'Caudex';
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* line 25, ../../sass/parts/main.scss */
+h1 {
+  padding: 20px;
+  font-size: 6.5rem;
+  letter-spacing: 0.5rem;
+  line-height: 6rem;
+}
+
+/* line 32, ../../sass/parts/main.scss */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.2rem;
+}
+
+/* line 38, ../../sass/parts/main.scss */
+h4 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* line 43, ../../sass/parts/main.scss */
+h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* line 48, ../../sass/parts/main.scss */
+hr {
+  height: 0px;
+  border: none;
+  border-top: 1px dashed #333;
+  margin: 50px 0px;
+}
+
+/* line 55, ../../sass/parts/main.scss */
+section {
+  padding: 130px 0px;
+}
+/* line 59, ../../sass/parts/main.scss */
+section a, section a * {
+  color: #8181e2 !important;
+}
+/* line 64, ../../sass/parts/main.scss */
+section ul, section ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  list-style: square;
+}
+/* line 69, ../../sass/parts/main.scss */
+section ul li, section ol li {
+  margin-bottom: 10px;
+}
+/* line 75, ../../sass/parts/main.scss */
+section ol {
+  list-style: upper-roman;
+}
+/* line 79, ../../sass/parts/main.scss */
+section.content {
+  width: 60%;
+  min-width: 300px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 89, ../../sass/parts/main.scss */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-image: url("../images/balls.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 102, ../../sass/parts/main.scss */
+footer {
+  padding: 10px;
+  font-size: .8rem;
+  text-align: center;
+  color: #777;
+}

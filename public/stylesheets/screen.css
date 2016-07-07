@@ -1,0 +1,699 @@
+/* Welcome to Compass.
+ * In this file you should write your main styles. (or centralize your imports)
+ * Import this file using the following HTML or equivalent:
+ * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
+/* line 4, ../sass/parts/main.scss */
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Raleway';
+  font-size: 18px;
+  line-height: 20px;
+  letter-spacing: 0.03rem;
+}
+
+/* line 15, ../sass/parts/main.scss */
+html, body {
+  background-color: #f7f7ff;
+}
+
+/* line 19, ../sass/parts/main.scss */
+h1, h2 {
+  font-family: 'Caudex';
+  color: #fff;
+  text-transform: uppercase;
+}
+
+/* line 25, ../sass/parts/main.scss */
+h1 {
+  padding: 20px;
+  font-size: 6.5rem;
+  letter-spacing: 0.5rem;
+  line-height: 6rem;
+}
+
+/* line 32, ../sass/parts/main.scss */
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  letter-spacing: 0.2rem;
+}
+
+/* line 38, ../sass/parts/main.scss */
+h4 {
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+
+/* line 43, ../sass/parts/main.scss */
+h5 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+/* line 48, ../sass/parts/main.scss */
+hr {
+  height: 0px;
+  border: none;
+  border-top: 1px dashed #333;
+  margin: 50px 0px;
+}
+
+/* line 55, ../sass/parts/main.scss */
+section {
+  padding: 130px 0px;
+}
+/* line 59, ../sass/parts/main.scss */
+section a, section a * {
+  color: #8181e2 !important;
+}
+/* line 64, ../sass/parts/main.scss */
+section ul, section ol {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  list-style: square;
+}
+/* line 69, ../sass/parts/main.scss */
+section ul li, section ol li {
+  margin-bottom: 10px;
+}
+/* line 75, ../sass/parts/main.scss */
+section ol {
+  list-style: upper-roman;
+}
+/* line 79, ../sass/parts/main.scss */
+section.content {
+  width: 60%;
+  min-width: 300px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* line 89, ../sass/parts/main.scss */
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  background-color: rgba(255, 255, 255, 0.95);
+  background-image: url("../images/balls.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* line 102, ../sass/parts/main.scss */
+footer {
+  padding: 10px;
+  font-size: .8rem;
+  text-align: center;
+  color: #777;
+}
+
+/*------------------------------------------------------------------------------------*/
+/*---------------------------------    header    -------------------------------------*/
+/*------------------------------------------------------------------------------------*/
+/* line 5, ../sass/parts/header.scss */
+section.header-wrapper {
+  background-color: #8181e2;
+  padding-top: 0px;
+  text-align: center;
+  background-image: url("../images/bg_top.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto 100%;
+}
+
+/* line 15, ../sass/parts/header.scss */
+section.header-wrapper h2 {
+  border-top: 1px solid #fff;
+  display: inline-block;
+  padding-top: 10px;
+}
+
+/* line 21, ../sass/parts/header.scss */
+nav {
+  margin-bottom: 10px;
+  padding-bottom: 40px;
+}
+
+/* line 26, ../sass/parts/header.scss */
+nav ul {
+  list-style: none;
+  font-size: 0px;
+}
+
+/* line 31, ../sass/parts/header.scss */
+nav ul li {
+  display: inline-block;
+}
+
+/* line 35, ../sass/parts/header.scss */
+nav ul li a {
+  color: #fff;
+  padding: 20px;
+  display: block;
+  cursor: pointer;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+}
+
+/* line 44, ../sass/parts/header.scss */
+nav ul li a:hover, nav ul li.active a {
+  border-bottom: 1px solid #fff;
+}
+
+/*------------------------------------------------------------------------------------*/
+/*----------------------------------    content    -----------------------------------*/
+/*------------------------------------------------------------------------------------*/
+/* line 58, ../sass/parts/header.scss */
+.text-block {
+  margin-bottom: 120px;
+}
+
+/* line 62, ../sass/parts/header.scss */
+.text-block .quote i {
+  display: block;
+  font-size: 1.6rem;
+  line-height: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* line 70, ../sass/parts/header.scss */
+.text-block .quote span {
+  font-size: 1.2rem;
+  display: block;
+  text-align: center;
+}
+
+/* line 76, ../sass/parts/header.scss */
+.text-block > *:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+/* line 2, ../sass/parts/content-pages.scss */
+.content-page * {
+  color: #000;
+}
+/* line 6, ../sass/parts/content-pages.scss */
+.content-page h2, .content-page h3, .content-page p, .content-page a {
+  letter-spacing: .12em;
+}
+/* line 10, ../sass/parts/content-pages.scss */
+.content-page h2 {
+  text-align: center;
+  font-size: 2.8rem;
+  padding: 0px 20px 70px 20px;
+  margin: 0px;
+}
+/* line 17, ../sass/parts/content-pages.scss */
+.content-page h2, .content-page h3 {
+  font-family: 'Caudex';
+  text-transform: uppercase;
+  line-height: 1;
+}
+/* line 24, ../sass/parts/content-pages.scss */
+.content-page h2 a, .content-page h3 a, .content-page h4 a {
+  font-size: 1em;
+}
+/* line 30, ../sass/parts/content-pages.scss */
+.content-page h4 {
+  padding-top: 10px;
+}
+/* line 34, ../sass/parts/content-pages.scss */
+.content-page section {
+  padding: 0px;
+  font-size: 0px;
+}
+/* line 38, ../sass/parts/content-pages.scss */
+.content-page section.level {
+  padding: 30px 0px;
+}
+/* line 43, ../sass/parts/content-pages.scss */
+.content-page section.level.level-1 h3 {
+  border-bottom: 1px solid #000;
+  font-size: 1.8rem;
+  padding-bottom: 10px;
+}
+/* line 49, ../sass/parts/content-pages.scss */
+.content-page section.level.level-1 .level-2 {
+  padding: 40px 0px;
+}
+/* line 52, ../sass/parts/content-pages.scss */
+.content-page section.level.level-1 .level-2 p {
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+/* line 58, ../sass/parts/content-pages.scss */
+.content-page section.level.level-1 .level-2 > *:last-child {
+  margin-bottom: 0px;
+}
+/* line 68, ../sass/parts/content-pages.scss */
+.content-page section code {
+  position: relative;
+  display: block;
+  text-align: center;
+  padding: 50px;
+  padding-top: 40px;
+}
+/* line 75, ../sass/parts/content-pages.scss */
+.content-page section code + code {
+  padding-top: 0px;
+}
+/* line 79, ../sass/parts/content-pages.scss */
+.content-page section code * {
+  font-family: 'Inconsolata';
+  font-size: 1.1em;
+}
+/* line 84, ../sass/parts/content-pages.scss */
+.content-page section code pre {
+  display: inline-block;
+  text-align: left;
+  line-height: 1.8;
+  letter-spacing: .15em;
+  padding: 15px 40px;
+  background: #e0e0e0;
+  width: auto;
+  box-shadow: 0px 1px 1px 0px #b4b4b4;
+}
+/* line 97, ../sass/parts/content-pages.scss */
+.content-page section .col {
+  display: inline-block;
+  width: 50%;
+  padding: 70px;
+}
+/* line 102, ../sass/parts/content-pages.scss */
+.content-page section .col h4 {
+  display: inline-block;
+  border-bottom: 1px solid #000;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+}
+/* line 110, ../sass/parts/content-pages.scss */
+.content-page section .col > ul, .content-page section .col ol {
+  list-style: none;
+}
+/* line 114, ../sass/parts/content-pages.scss */
+.content-page section .col.col-left {
+  text-align: right;
+}
+/* line 120, ../sass/parts/content-pages.scss */
+.content-page section .icon-merge {
+  transform: rotateX(180deg);
+  position: relative;
+  display: block;
+  left: calc(50% - 60px);
+  width: 150px;
+  margin-bottom: 70px;
+}
+/* line 129, ../sass/parts/content-pages.scss */
+.content-page section .structured-info {
+  text-align: center !important;
+}
+/* line 132, ../sass/parts/content-pages.scss */
+.content-page section .structured-info strong {
+  display: block;
+  font-weight: 900;
+  font-size: 1.3em;
+  line-height: 3;
+}
+/* line 140, ../sass/parts/content-pages.scss */
+.content-page section figure {
+  margin: 50px 0px;
+  text-align: center;
+}
+/* line 144, ../sass/parts/content-pages.scss */
+.content-page section figure img {
+  padding: 50px;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px 0px #999;
+}
+/* line 150, ../sass/parts/content-pages.scss */
+.content-page section figure figcaption {
+  text-align: center;
+  padding: 10px;
+}
+/* line 156, ../sass/parts/content-pages.scss */
+.content-page section .full-width {
+  width: 100%;
+}
+/* line 160, ../sass/parts/content-pages.scss */
+.content-page section .formular {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  width: 40%;
+  min-width: 280px;
+}
+
+/* line 1, ../sass/parts/formulars.scss */
+form {
+  width: 100%;
+  font-size: 0px;
+  margin-bottom: 20px;
+  background-color: #8181e2;
+  padding: 10px;
+  padding-bottom: 0px;
+  color: #fff;
+  background-image: url("../images/closed.png");
+  background-position: right 14px top 20px;
+  background-repeat: no-repeat;
+}
+
+/* line 14, ../sass/parts/formulars.scss */
+form.active {
+  background-image: url("../images/open.png");
+  background-position: right 14px top 25px;
+}
+
+/* line 20, ../sass/parts/formulars.scss */
+form legend {
+  padding-top: 10px;
+  padding-bottom: 20px;
+  width: 100%;
+  display: block;
+  cursor: pointer;
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-image: url("../images/search.png");
+  padding-left: 70px;
+}
+
+/* line 32, ../sass/parts/formulars.scss */
+form.active legend {
+  font-weight: bold;
+}
+
+/* line 36, ../sass/parts/formulars.scss */
+form .form-content-block {
+  position: relative;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  border-top: 1px solid #fff;
+  font-size: 0px;
+}
+
+/* line 44, ../sass/parts/formulars.scss */
+form dl {
+  vertical-align: top;
+}
+
+/* line 48, ../sass/parts/formulars.scss */
+#inputText_field, #inputAlgorithms_field {
+  display: inline-block;
+}
+
+/* line 53, ../sass/parts/formulars.scss */
+#inputText_field {
+  width: calc(100% - 310px);
+  margin-right: 10px;
+}
+
+/* line 58, ../sass/parts/formulars.scss */
+form dl dt {
+  font-weight: bold;
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* line 64, ../sass/parts/formulars.scss */
+form textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 300px;
+  resize: vertical;
+  border: none;
+}
+
+/* line 72, ../sass/parts/formulars.scss */
+.info, dd.error {
+  display: none !important;
+}
+
+/* line 76, ../sass/parts/formulars.scss */
+#inputText_field dd {
+  line-height: 0px;
+}
+
+/* line 80, ../sass/parts/formulars.scss */
+.form-block-right {
+  width: 300px;
+  position: absolute;
+  right: 0px;
+  top: 20px;
+  bottom: 0px;
+}
+
+/* line 88, ../sass/parts/formulars.scss */
+form .buttonset label {
+  margin-top: -3px;
+}
+
+/* line 92, ../sass/parts/formulars.scss */
+form .buttonset label:not(:last-of-type)::after {
+  content: "";
+  display: block;
+  height: 30px;
+  cursor: default;
+}
+
+/* line 99, ../sass/parts/formulars.scss */
+form .buttonset input, form .buttonset label, form input[type="submit"] {
+  cursor: pointer;
+}
+
+/* line 103, ../sass/parts/formulars.scss */
+form .buttonset input {
+  margin-right: 5px;
+}
+
+/* line 107, ../sass/parts/formulars.scss */
+form input[type="submit"] {
+  display: inline-block;
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  padding: 10px 50px;
+  background-color: #8181e2;
+  border: 1px solid #fff !important;
+  color: #fff;
+  border: none;
+}
+
+/* line 119, ../sass/parts/formulars.scss */
+form input[type="submit"]:hover {
+  background-color: #fff;
+  color: #8181e2;
+}
+
+/*************************************************************************/
+/************************** twitter form ********************************/
+/*************************************************************************/
+/* line 129, ../sass/parts/formulars.scss */
+#twitter-form legend {
+  background-image: url("../images/twitter.png");
+  background-position: left top 2px;
+}
+
+/* line 135, ../sass/parts/formulars.scss */
+#twitter-form #username_field {
+  font-size: 0px;
+}
+
+/* line 139, ../sass/parts/formulars.scss */
+#twitter-form #username_field, #twitter-form #username_field > * {
+  display: inline-block;
+}
+
+/* line 143, ../sass/parts/formulars.scss */
+#twitter-form #username {
+  padding: 11px;
+  border: none;
+  margin-top: 3px;
+}
+
+/* line 149, ../sass/parts/formulars.scss */
+#twitter-form #twitter-form-submit {
+  width: 300px;
+  right: 0px;
+  position: relative;
+  vertical-align: bottom;
+  bottom: 0px;
+}
+
+/* line 157, ../sass/parts/formulars.scss */
+#twitter-form #username_field {
+  width: calc(100% - 301px);
+}
+
+/* line 161, ../sass/parts/formulars.scss */
+#twitter-form #username_field dt {
+  margin-bottom: 0px;
+  width: 120px;
+}
+
+/* line 166, ../sass/parts/formulars.scss */
+#twitter-form #username_field dd {
+  width: calc(100% - 131px);
+}
+
+/* line 170, ../sass/parts/formulars.scss */
+#twitter-form #username {
+  width: 100%;
+}
+
+/*************************************************************************/
+/****************************** result ***********************************/
+/*************************************************************************/
+/* line 5, ../sass/parts/results.scss */
+.result {
+  padding-top: 0px;
+}
+
+/* line 9, ../sass/parts/results.scss */
+.result h2 {
+  line-height: 8rem;
+  color: #000;
+  text-align: center;
+  font-size: 2rem;
+}
+
+/* line 16, ../sass/parts/results.scss */
+.result table {
+  text-align: left;
+  table-layout: fixed;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* line 23, ../sass/parts/results.scss */
+.result table .headline {
+  text-align: center;
+  font-size: 2.4rem;
+  background: #f7f7ff;
+  color: #000;
+  font-family: 'Caudex';
+  padding: 40px;
+}
+
+/* line 32, ../sass/parts/results.scss */
+.result table tr > * {
+  padding: 20px;
+}
+
+/* line 36, ../sass/parts/results.scss */
+.result table thead {
+  background-color: #8181e2;
+  color: #fff;
+}
+
+/* line 41, ../sass/parts/results.scss */
+.result table thead th {
+  text-align: center;
+}
+
+/* line 45, ../sass/parts/results.scss */
+.result table thead th:first-of-type {
+  width: 230px;
+}
+
+/* line 49, ../sass/parts/results.scss */
+.result table tbody tr > * {
+  background-color: #eee;
+  transition: .2s;
+}
+
+/* line 54, ../sass/parts/results.scss */
+.result table tbody tr:hover > * {
+  background-color: #e2e2e2;
+}
+
+/* line 58, ../sass/parts/results.scss */
+#resultRows td {
+  position: relative;
+  width: auto;
+  overflow: hidden;
+}
+
+/* line 64, ../sass/parts/results.scss */
+#resultRows td:first-child {
+  width: 230px;
+  border-right: 2px solid #fff;
+}
+
+/* line 69, ../sass/parts/results.scss */
+#resultRows td p {
+  position: relative;
+}
+
+/* line 74, ../sass/parts/results.scss */
+#resultRows td > div {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  overflow: visible;
+  min-width: 2px;
+}
+
+/* line 82, ../sass/parts/results.scss */
+#resultRows td > .democrats {
+  right: 0px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#56b5dd+2,34aae0+100 */
+  background: #56b5dd;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #56b5dd 2%, #34aae0 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #56b5dd 2%, #34aae0 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #56b5dd 2%, #34aae0 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#56b5dd', endColorstr='#34aae0',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 92, ../sass/parts/results.scss */
+#resultRows td > .republicans {
+  left: 0px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ea1c24+0,cf181f+100 */
+  background: #ea1c24;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #ea1c24 0%, #cf181f 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ea1c24 0%, #cf181f 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ea1c24 0%, #cf181f 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ea1c24', endColorstr='#cf181f',GradientType=0 );
+  /* IE6-9 */
+  text-align: right;
+}
+
+/* line 103, ../sass/parts/results.scss */
+#resultRows td > div span {
+  display: block;
+  color: #fff;
+  font-wight: bold;
+  position: absolute;
+  font-size: .7rem;
+}
+
+/* line 111, ../sass/parts/results.scss */
+#resultRows td > .republicans span {
+  right: 5px;
+  top: 32%;
+}
+
+/* line 115, ../sass/parts/results.scss */
+#resultRows td > .democrats span {
+  left: 5px;
+  top: 32%;
+}
